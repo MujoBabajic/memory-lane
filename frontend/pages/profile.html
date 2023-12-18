@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Lane</title>
+    <link rel="stylesheet" href="../public/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      Logo Here
+      <nav>
+        <div class="home-button">Home</div>
+        <div class="profile-nav-button">
+          <img src="../public/images/maca.jpg" alt="" />
+          <div class="dropdown-content">
+            <a href="#">Profile</a>
+            <a href="#">Log Out</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="user-info-container">
+        <div class="profile-picture-container">
+          <img src="../public/images/maca.jpg" alt="" />
+        </div>
+        <div class="usarname-and-edit-button-container">
+          <div id="profile-user-name">jomu123</div>
+          <button id="edit-profile-button">Edit profile</button>
+        </div>
+      </section>
+      <br />
+      <hr />
+      <br />
+      <div class="new-timeline-button-container">
+        <button id="new-timeline-button">+ New Timeline</button>
+      </div>
+      <section class="timeline-select-container">
+        <div class="timeline-item">Timeline 1</div>
+        <div class="timeline-item">Timeline 2</div>
+        <div class="timeline-item">Timeline 3</div>
+        <div class="timeline-item">Timeline 4</div>
+        <div class="timeline-item">Timeline 5</div>
+      </section>
+
+      <div class="modal" id="new-timeline-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Add New Timeline</h2>
+          </div>
+          <br />
+          <form id="new-timeline-form">
+            <label for="new-timeline-name">Timeline Name:</label>
+            <input
+              type="text"
+              id="new-timeline-name"
+              name="new-timeline-name"
+              required
+            />
+            <label for="new-timeline-private-toggle">Private:</label>
+            <select
+              id="new-timeline-private-toggle"
+              name="new-timeline-private-toggle"
+            >
+              <option value="no">No</option>
+              <option value="yes">Yes</option></select
+            ><br /><br />
+
+            <button type="submit" class="add-timeline-modal-button">
+              Add Timeline
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="../public/js/script.js"></script>
+  </body>
+</html>

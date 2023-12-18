@@ -1,0 +1,409 @@
+:root {
+  --main-color: #fed35c;
+  --other-color: #333333;
+  --main-bg-color: #f2f2f2;
+  --container-bg-color: white;
+  --input-underline-color: #333333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+
+header {
+  height: 80px;
+  background-color: var(--main-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.home-button {
+  margin-right: 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.profile-nav-button {
+  height: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.profile-nav-button img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin-top: 12px;
+  right: 5px;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+
+.dropdown-content a:hover {
+  background-color: #d1d1d1;
+}
+
+main {
+  padding: 10px 100px 10px 100px;
+  background-color: var(--main-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+/* LOGIN AND REGISTRATION */
+
+#form-container {
+  padding: 20px;
+  background-color: var(--container-bg-color);
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width: 350px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form a {
+  text-decoration: none;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid var(--input-underline-color);
+  padding: 5px;
+  margin-bottom: 30px;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  color: var(--other-color);
+}
+
+#login-button,
+#sign-up-button {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#login-button:hover,
+#sign-up-button:hover {
+  background-color: #fed35c;
+}
+
+#form-bottom-message {
+  font-size: 15px;
+  color: var(--other-color);
+}
+
+.full-name-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#first-name-input {
+  width: 48%;
+  margin-right: 2%;
+}
+
+#last-name-input {
+  width: 48%;
+  margin-left: 2%;
+}
+
+.dob-and-gender-container {
+  width: 100%;
+  display: flex;
+}
+
+#dob-input {
+  width: 48%;
+  margin-right: 2%;
+}
+
+#gender-select {
+  width: 48%;
+  margin-left: 2%;
+  height: 31px;
+  border: none;
+  border-bottom: 1px solid var(--input-underline-color);
+  outline: none;
+  font-size: 16px;
+
+  color: #8c8075;
+}
+
+/* PROFILE AND TIMELINE */
+
+.user-info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-picture-container img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+
+  margin-right: 20px;
+}
+
+#profile-user-name {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#edit-profile-button {
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #bbbbbb;
+}
+
+#edit-profile-button:hover {
+  background-color: #a3a3a3;
+}
+
+.new-timeline-button-container {
+  width: 100%;
+}
+
+#new-timeline-button {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
+}
+
+#new-timeline-button:hover {
+  background-color: #bbbbbb;
+}
+
+.timeline-select-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+hr {
+  width: 100%;
+}
+
+.timeline-item {
+  background-color: rgba(161, 159, 159, 0.5);
+  width: 320px;
+  height: 320px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeline-item:hover {
+  background-color: rgba(161, 159, 159, 0.3);
+  cursor: pointer;
+}
+
+/* CREATE TIMELINE MODAL*/
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+#timelineName {
+  width: 50%;
+}
+.add-timeline-modal-button {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* EDIT PROFILE */
+
+.profile-picture-edit-container img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.edit-profile-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.edit-profile-container > * {
+  margin-bottom: 10px;
+}
+
+.edit-containers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(114, 114, 114);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.edit-page-buttons {
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.edit-page-buttons:hover {
+  background-color: #a3a3a3;
+}
+
+.save-or-cancel-changes-container {
+  padding: 10px 50px;
+}
+
+#save-changes-button,
+#cancel-changes-button {
+  width: 100px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#save-changes-button:hover,
+#cancel-changes-button:hover {
+  background-color: #a3a3a3;
+}
+
+/* FEED */
+
+.feed-post {
+  background-color: #e0e0e0;
+  padding: 15px;
+  margin: 5px;
+}
+
+.post-heading img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.post-heading p {
+  margin-left: 10px;
+}
+
+.post-heading {
+  display: flex;
+  align-items: center;
+  padding: 0 0 10px 0;
+}
+
+.post-picture img {
+  min-width: 400px;
+  width: 400px;
+  max-height: 550px;
+}
+
+.post-description {
+  margin: 5px 0;
+}
+
+.post-dates {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #333333;
+  margin-top: 10px;
+}
