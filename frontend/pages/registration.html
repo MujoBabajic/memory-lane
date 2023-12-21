@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Lane</title>
-    <link rel="stylesheet" href="../public/css/styles.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
     <header>Logo Here</header>
 
     <main>
       <section id="form-container">
-        <form action="registration" method="POST">
+        <form action="register" method="POST">
           <h2>Sign Up</h2>
           <br />
           <br />
@@ -20,14 +20,14 @@
           <div class="full-name-container">
             <input
               type="text"
-              name="first-name-input"
+              name="firstname"
               id="first-name-input"
               placeholder="First Name"
               required
             />
             <input
               type="text"
-              name="last-name-input"
+              name="lastname"
               id="last-name-input"
               placeholder="Last Name"
               required
@@ -37,12 +37,12 @@
           <div class="dob-and-gender-container">
             <input
               type="date"
-              name="dob-input"
+              name="dob"
               id="dob-input"
               placeholder="Date of Birth"
               required
             />
-            <select name="gender-select" id="gender-select">
+            <select name="gender" id="gender-select">
               <option value="" disabled selected>Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -51,14 +51,14 @@
 
           <input
             type="email"
-            name="email-input"
+            name="email"
             id="email-input"
             placeholder="Email"
             required
           />
           <input
             type="password"
-            name="password-input"
+            name="password"
             id="password"
             placeholder="Password"
             required
@@ -69,11 +69,11 @@
           <br />
           <br />
           <p class="form-bottom-message">
-            Already have an account? <a href="login.html">Login.</a>
+            Already have an account? <a href="/login-page">Login.</a>
           </p>
         </form>
       </section>
     </main>
-    <script src="../public/js/script.js"></script>
+    <script src="./js/script.js"></script>
   </body>
 </html>

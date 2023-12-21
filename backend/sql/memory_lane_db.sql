@@ -11,6 +11,14 @@ CREATE TABLE users (
     password_hash VARCHAR(20) NOT NULL
 );
 
+insert into users (first_name, last_name, date_of_birth, gender, email, password_hash)
+values ('Mujo', 'Babajic', '2001-03-17', 'Male', 'mujo.babajic@gmail.com', '12341234');
+
+insert into users (first_name, last_name, date_of_birth, gender, email, password_hash)
+values ('Bego', 'Begic', '1987-06-10', 'Male', 'bego.begic@gmail.com', 'sifra123');
+
+select * from users;
+
 CREATE TABLE timelines (
     timeline_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
