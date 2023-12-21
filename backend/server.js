@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const path = require("path");
 const db = require("./models/dbConnection");
+const bcrypt = require("bcrypt");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -21,17 +22,21 @@ app.post("/login", async (req, res) => {
   const password = req.body.password;
 
   try {
-    const data = await db.execute(
-      `SELECT * FROM users WHERE email = ? AND password_hash = ?`,
-      [email, password]
-    );
+    const data = await db.execute(`SELECT * FROM users WHERE email = ?`, [
+      email,
+    ]);
     if (!data[0].length) {
-      res.send("User not found");
+      res.status(400).send("User not found");
     } else {
-      res.send(`User found: `);
+      if (await bcrypt.compare(password, data[0][0].password_hash)) {
+        res.status(200).send("Login successful");
+      } else {
+        res.status(400).send(`Incorrect password`);
+      }
     }
   } catch (err) {
     console.log(err);
+    res.status(500);
   }
 });
 
@@ -50,14 +55,17 @@ app.post("/register", async (req, res) => {
     if (emailCheck[0].length) {
       res.send("Email already in use");
     } else {
+      const hashedPassword = await bcrypt.hash(password, 10);
+
       await db.execute(
         `INSERT INTO users (first_name, last_name, date_of_birth, gender, email, password_hash) VALUES (?, ?, ?, ?, ?, ?)`,
-        [firstName, lastName, dob, gender, email, password]
+        [firstName, lastName, dob, gender, email, hashedPassword]
       );
-      res.send("New user registered");
+      res.status(200).send("New user registered");
     }
   } catch (err) {
     console.log(err);
+    res.status(500);
   }
 });
 

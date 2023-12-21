@@ -8,14 +8,8 @@ CREATE TABLE users (
     date_of_birth DATE,
     gender VARCHAR(6) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
-    password_hash VARCHAR(20) NOT NULL
+    password_hash VARCHAR(100) NOT NULL
 );
-
-insert into users (first_name, last_name, date_of_birth, gender, email, password_hash)
-values ('Mujo', 'Babajic', '2001-03-17', 'Male', 'mujo.babajic@gmail.com', '12341234');
-
-insert into users (first_name, last_name, date_of_birth, gender, email, password_hash)
-values ('Bego', 'Begic', '1987-06-10', 'Male', 'bego.begic@gmail.com', 'sifra123');
 
 select * from users;
 
