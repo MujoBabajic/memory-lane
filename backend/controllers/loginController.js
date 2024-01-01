@@ -1,7 +1,13 @@
+const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const loginModel = require("../models/loginModel");
 
 async function loginUser(req, res) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).render("login", { errors: errors.mapped() });
+  }
+
   const { email, password } = req.body;
 
   try {

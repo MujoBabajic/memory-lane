@@ -92,7 +92,7 @@ main {
 
 /* LOGIN AND REGISTRATION */
 
-#form-container {
+.form-container {
   padding: 20px;
   background-color: var(--container-bg-color);
   border-radius: 5px;
@@ -111,15 +111,22 @@ form a {
   text-decoration: none;
 }
 
-input {
+.form-container input {
   border: none;
   border-bottom: 1px solid var(--input-underline-color);
   padding: 5px;
-  margin-bottom: 30px;
   outline: none;
   width: 100%;
   font-size: 16px;
   color: var(--other-color);
+}
+
+.form-container input:not(:first-child) {
+  margin-top: 30px;
+}
+
+#login-email-input {
+  margin-top: 0;
 }
 
 #login-button,
@@ -131,6 +138,7 @@ input {
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+  margin-top: 30px;
 }
 
 #login-button:hover,
@@ -150,16 +158,17 @@ input {
 }
 
 #first-name-input {
-  width: 48%;
+  width: 100%;
   margin-right: 2%;
 }
 
 #last-name-input {
-  width: 48%;
+  width: 100%;
   margin-left: 2%;
 }
 
 .dob-and-gender-container {
+  margin-top: 30px;
   width: 100%;
   display: flex;
 }
@@ -177,8 +186,21 @@ input {
   border-bottom: 1px solid var(--input-underline-color);
   outline: none;
   font-size: 16px;
-
   color: #8c8075;
+}
+
+.error-message-div {
+  width: 100%;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  padding: 5px;
 }
 
 /* PROFILE AND TIMELINE */

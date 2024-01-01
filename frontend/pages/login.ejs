@@ -10,19 +10,24 @@
     <header>Logo Here</header>
 
     <main>
-      <section id="form-container">
+      <section class="form-container">
         <form action="login" method="POST">
           <h2>Login</h2>
           <br />
           <br />
           <br />
           <input
-            type="text"
+            type="email"
             name="email"
-            id="email-input"
+            id="login-email-input"
             placeholder="Email"
             required
           />
+          <div class="error-message-div">
+            <% if (errors && errors.email) { %>
+            <p class="error-message"><%= errors.email.msg %></p>
+            <% } %>
+          </div>
 
           <input
             type="password"
@@ -31,6 +36,11 @@
             placeholder="Password"
             required
           />
+          <div class="error-message-div">
+            <% if (errors && errors.password) { %>
+            <p class="error-message"><%= errors.password.msg %></p>
+            <% } %>
+          </div>
 
           <button id="login-button">LOGIN</button>
           <br />

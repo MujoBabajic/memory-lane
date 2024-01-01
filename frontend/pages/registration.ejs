@@ -10,7 +10,7 @@
     <header>Logo Here</header>
 
     <main>
-      <section id="form-container">
+      <section class="form-container">
         <form action="register" method="POST">
           <h2>Sign Up</h2>
           <br />
@@ -18,20 +18,34 @@
           <br />
 
           <div class="full-name-container">
-            <input
-              type="text"
-              name="firstname"
-              id="first-name-input"
-              placeholder="First Name"
-              required
-            />
-            <input
-              type="text"
-              name="lastname"
-              id="last-name-input"
-              placeholder="Last Name"
-              required
-            />
+            <div class="first-name-container">
+              <input
+                type="text"
+                name="firstname"
+                id="first-name-input"
+                placeholder="First Name"
+                required
+              />
+              <div class="error-message-div">
+                <% if (errors && errors.firstname) { %>
+                <p class="error-message"><%= errors.firstname.msg %></p>
+                <% } %>
+              </div>
+            </div>
+            <div class="last-name-container">
+              <input
+                type="text"
+                name="lastname"
+                id="last-name-input"
+                placeholder="Last Name"
+                required
+              />
+              <div class="error-message-div">
+                <% if (errors && errors.lastname) { %>
+                <p class="error-message"><%= errors.lastname.msg %></p>
+                <% } %>
+              </div>
+            </div>
           </div>
 
           <div class="dob-and-gender-container">
@@ -52,10 +66,15 @@
           <input
             type="email"
             name="email"
-            id="email-input"
+            id="registration-email-input"
             placeholder="Email"
             required
           />
+          <div class="error-message-div">
+            <% if (errors && errors.email) { %>
+            <p class="error-message"><%= errors.email.msg %></p>
+            <% } %>
+          </div>
           <input
             type="password"
             name="password"
@@ -63,7 +82,11 @@
             placeholder="Password"
             required
           />
-
+          <div class="error-message-div">
+            <% if (errors && errors.password) { %>
+            <p class="error-message"><%= errors.password.msg %></p>
+            <% } %>
+          </div>
           <button id="sign-up-button">SIGN UP</button>
           <br />
           <br />
