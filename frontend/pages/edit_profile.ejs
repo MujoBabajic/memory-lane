@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Lane</title>
-    <link rel="stylesheet" href="../public/css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <header>
@@ -12,10 +12,10 @@
       <nav>
         <div class="home-button">Home</div>
         <div class="profile-nav-button">
-          <img src="../public/images/maca.jpg" alt="" />
+          <img src="/images/maca.jpg" alt="" />
           <div class="dropdown-content">
-            <a href="#">Profile</a>
-            <a href="#">Log Out</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout">Log Out</a>
           </div>
         </div>
       </nav>
@@ -24,19 +24,19 @@
     <main>
       <section class="edit-profile-container">
         <div class="profile-picture-edit-container edit-containers">
-          <img src="../public/images/maca.jpg" alt="" />
+          <img src="/images/maca.jpg" alt="" />
           <button id="change-picture-button" class="edit-page-buttons">
             Change
           </button>
         </div>
         <div class="change-first-name-container edit-containers">
-          <p>Mujo</p>
+          <p><%=user[0].first_name%></p>
           <button id="change-first-name-button" class="edit-page-buttons">
             Change
           </button>
         </div>
         <div class="change-last-name-container edit-containers">
-          <p>Babajic</p>
+          <p><%=user[0].last_name%></p>
           <button id="change-last-name-button" class="edit-page-buttons">
             Change
           </button>
@@ -54,6 +54,6 @@
         </div>
       </section>
     </main>
-    <script src="../public/js/script.js"></script>
+    <script src="/js/script.js"></script>
   </body>
 </html>

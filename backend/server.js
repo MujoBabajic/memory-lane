@@ -15,23 +15,41 @@ app.set("views", path.join(__dirname, "../frontend/pages"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../frontend/public")));
 app.use(cookieParser());
+app.use(express.json());
+
+app.use((req, res, next) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.setHeader("Pragma", "no-cache");
+  res.setHeader("Expires", "0");
+  next();
+});
 
 app.use("/login", loginRoute);
 app.use("/register", registrationRoute);
 app.use("/logout", logoutRoute);
 
+app.get("*", authenticateToken.checkUser);
 app.get("/", (req, res) => {
-  res.render("login", { errors: "" });
+  if (res.locals.user) res.redirect("/feed");
+  else res.render("login", { errors: "" });
 });
-
 app.get("/register-page", (req, res) => {
-  res.render("registration", { errors: "" });
+  if (res.locals.user) res.redirect("/feed");
+  else res.render("registration", { errors: "" });
 });
-
-app.get("/feed", authenticateToken, (req, res) => {
+app.get("/feed", authenticateToken.authenticateToken, (req, res) => {
   res.render("feed");
 });
 
+app.get("/profile", (req, res) => {
+  if (res.locals.user) res.render("profile");
+  else res.sendStatus(401);
+});
+
+app.get("/editprofile", (req, res) => {
+  if (res.locals.user) res.render("edit_profile");
+  else res.sendStatus(401);
+});
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

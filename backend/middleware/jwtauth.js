@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const loginModel = require("../models/loginModel");
 require("dotenv").config();
 
 const authenticateToken = (req, res, next) => {
@@ -10,7 +11,6 @@ const authenticateToken = (req, res, next) => {
         console.log(err.message);
         res.redirect("/");
       } else {
-        console.log(decodedToken);
         next();
       }
     });
@@ -19,4 +19,31 @@ const authenticateToken = (req, res, next) => {
   }
 };
 
-module.exports = authenticateToken;
+const checkUser = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(
+      token,
+      process.env.ACCESS_TOKEN_SECRET,
+      async (err, decodedToken) => {
+        if (err) {
+          res.locals.user = null;
+          next();
+        } else {
+          try {
+            let user = await loginModel.getUserByEmail(decodedToken.userEmail);
+            res.locals.user = user;
+            next();
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      }
+    );
+  } else {
+    res.locals.user = null;
+    next();
+  }
+};
+
+module.exports = { authenticateToken, checkUser };
