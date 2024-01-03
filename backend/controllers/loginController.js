@@ -1,6 +1,8 @@
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const loginModel = require("../models/loginModel");
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 async function loginUser(req, res) {
   const errors = validationResult(req);
@@ -23,7 +25,21 @@ async function loginUser(req, res) {
     );
 
     if (passwordMatch) {
-      return res.status(200).send("Login successful");
+      const accessToken = jwt.sign(
+        { userEmail: email },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "1d",
+        }
+      );
+
+      res.cookie("jwt", accessToken, {
+        httpOnly: true,
+        sameSite: "None",
+        secure: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+      res.redirect("/feed");
     } else {
       return res.status(400).send("Incorrect email or password");
     }
