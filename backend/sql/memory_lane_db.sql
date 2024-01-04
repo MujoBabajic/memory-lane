@@ -8,7 +8,8 @@ CREATE TABLE users (
     date_of_birth DATE,
     gender VARCHAR(6) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
-    password_hash VARCHAR(100) NOT NULL
+    password_hash VARCHAR(100) NOT NULL,
+    profile_picture LONGBLOB
 );
 
 select * from users;
@@ -37,7 +38,7 @@ CREATE TABLE memories (
 CREATE TABLE memories_pictures (
 	picture_id INT AUTO_INCREMENT PRIMARY KEY,
     memory_id INT,
-    picture BLOB,
+    picture LONGBLOB,
     FOREIGN KEY (memory_id) REFERENCES memories (memory_id)
 );
 

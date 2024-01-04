@@ -41,7 +41,7 @@ app.get("/feed", authenticateToken.authenticateToken, (req, res) => {
   res.render("feed");
 });
 
-app.get("/profile", (req, res) => {
+app.get("/profile", async (req, res) => {
   if (res.locals.user) res.render("profile");
   else res.sendStatus(401);
 });
@@ -50,6 +50,7 @@ app.get("/editprofile", (req, res) => {
   if (res.locals.user) res.render("edit_profile");
   else res.sendStatus(401);
 });
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
