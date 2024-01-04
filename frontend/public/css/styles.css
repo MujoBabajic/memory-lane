@@ -34,6 +34,17 @@ header {
   top: 0;
 }
 
+.header-logo {
+  text-decoration: none;
+  color: black;
+  font-family: cursive;
+}
+
+.header-logo:visited {
+  text-decoration: none;
+  color: black;
+}
+
 nav {
   display: flex;
   align-items: center;
