@@ -51,6 +51,10 @@ app.get("/editprofile", (req, res) => {
   else res.sendStatus(401);
 });
 
+app.get("/timeline", (req, res) => {
+  res.render("timeline");
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

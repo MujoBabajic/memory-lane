@@ -15,7 +15,7 @@ function createNewTimeline(req, res) {
             isPrivate: req.body.isPrivate,
             email: email,
           });
-          res.status(201).send("Timeline created");
+          res.status(201).redirect("/profile");
         } catch (err) {
           console.log(err);
           res.status(500).send("Internal Server Error");

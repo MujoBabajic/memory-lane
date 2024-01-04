@@ -252,29 +252,43 @@ form a {
   width: 100%;
 }
 
-#new-timeline-button {
+#new-timeline-button,
+#remove-timeline-button {
   padding: 10px;
   cursor: pointer;
   border-radius: 5px;
   outline: none;
 }
 
-#new-timeline-button:hover {
+#new-timeline-button:hover,
+#remove-timeline-button:hover {
   background-color: #bbbbbb;
 }
 
-.timeline-select-container {
+.timeline-select-container,
+.memories-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
 
+.timeline-select-container a {
+  text-decoration: none;
+  color: black;
+}
+
+.timeline-select-container a:visited {
+  text-decoration: none;
+  color: black;
+}
+
 hr {
   width: 100%;
 }
 
-.timeline-item {
+.timeline-item,
+.memory-item {
   background-color: rgba(161, 159, 159, 0.5);
   width: 250px;
   height: 250px;
@@ -285,9 +299,23 @@ hr {
   align-items: center;
 }
 
-.timeline-item:hover {
+.timeline-item:hover,
+.memory-item:hover {
   background-color: rgba(161, 159, 159, 0.3);
   cursor: pointer;
+}
+
+.current-timeline-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.current-timeline-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* CREATE TIMELINE MODAL*/
