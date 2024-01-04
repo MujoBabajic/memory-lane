@@ -55,6 +55,7 @@
         <button id="new-timeline-button">+ New Timeline</button>
       </div>
       <section class="timeline-select-container">
+        <!--i want timelines here-->
         <div class="timeline-item">Timeline 1</div>
         <div class="timeline-item">Timeline 2</div>
         <div class="timeline-item">Timeline 3</div>
@@ -69,26 +70,16 @@
             <h2>Add New Timeline</h2>
           </div>
           <br />
-          <form id="new-timeline-form">
+          <form id="new-timeline-form" action="createnewtimeline" method="POST">
             <label for="new-timeline-name">Timeline Name:</label>
-            <input
-              type="text"
-              id="new-timeline-name"
-              name="new-timeline-name"
-              required
-            />
+            <input type="text" id="new-timeline-name" name="title" required />
             <label for="new-timeline-private-toggle">Private:</label>
-            <select
-              id="new-timeline-private-toggle"
-              name="new-timeline-private-toggle"
-            >
-              <option value="no">No</option>
-              <option value="yes">Yes</option></select
+            <select id="new-timeline-private-toggle" name="isPrivate">
+              <option value="false">No</option>
+              <option value="true">Yes</option></select
             ><br /><br />
 
-            <button type="submit" class="add-timeline-modal-button">
-              Add Timeline
-            </button>
+            <button class="add-timeline-modal-button">Add Timeline</button>
           </form>
         </div>
       </div>

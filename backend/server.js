@@ -8,6 +8,7 @@ const authenticateToken = require("./middleware/jwtauth");
 const loginRoute = require("./routes/loginRoute");
 const registrationRoute = require("./routes/registrationRoute");
 const logoutRoute = require("./routes/logoutRoute");
+const newTimelineRoute = require("./routes/newTimelineRoute");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../frontend/pages"));
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 app.use("/login", loginRoute);
 app.use("/register", registrationRoute);
 app.use("/logout", logoutRoute);
+app.use("/createnewtimeline", newTimelineRoute);
 
 app.get("*", authenticateToken.checkUser);
 app.get("/", (req, res) => {

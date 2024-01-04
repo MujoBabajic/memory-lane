@@ -33,16 +33,3 @@ window.onclick = function (event) {
 };
 
 const form = document.getElementById("new-timeline-form");
-
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-  const timelineName = document.getElementById("new-timeline-name").value;
-  const privateToggle = document.getElementById(
-    "new-timeline-private-toggle"
-  ).value;
-
-  console.log("Timeline Name:", timelineName);
-  console.log("Private:", privateToggle);
-
-  modal.style.display = "none";
-});

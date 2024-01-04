@@ -12,7 +12,7 @@ CREATE TABLE users (
     profile_picture LONGBLOB
 );
 
-select * from users;
+select * from timelines;
 
 CREATE TABLE timelines (
     timeline_id INT AUTO_INCREMENT PRIMARY KEY,

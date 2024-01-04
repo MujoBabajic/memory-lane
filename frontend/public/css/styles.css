@@ -267,7 +267,7 @@ form a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 hr {
@@ -276,8 +276,8 @@ hr {
 
 .timeline-item {
   background-color: rgba(161, 159, 159, 0.5);
-  width: 320px;
-  height: 320px;
+  width: 250px;
+  height: 250px;
   margin: 10px;
   display: flex;
   flex-direction: column;
