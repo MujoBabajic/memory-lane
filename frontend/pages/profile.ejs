@@ -57,7 +57,7 @@
       <% if (data[0].length>0) { %>
       <section class="timeline-select-container">
         <% data[0].forEach(timeline => { %>
-        <a href="/timeline">
+        <a href="/timeline/<%= timeline.timeline_id %>">
           <div class="timeline-item"><%= timeline.title %></div>
         </a>
         <% }); %>

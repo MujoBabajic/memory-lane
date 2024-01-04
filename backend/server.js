@@ -10,6 +10,8 @@ const registrationRoute = require("./routes/registrationRoute");
 const logoutRoute = require("./routes/logoutRoute");
 const newTimelineRoute = require("./routes/newTimelineRoute");
 const profileRoute = require("./routes/profileRoute");
+const timelineRoute = require("./routes/timelineRoute");
+const { time } = require("console");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../frontend/pages"));
@@ -51,9 +53,7 @@ app.get("/editprofile", (req, res) => {
   else res.sendStatus(401);
 });
 
-app.get("/timeline", (req, res) => {
-  res.render("timeline");
-});
+app.use("/timeline", timelineRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
