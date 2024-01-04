@@ -9,6 +9,7 @@ const loginRoute = require("./routes/loginRoute");
 const registrationRoute = require("./routes/registrationRoute");
 const logoutRoute = require("./routes/logoutRoute");
 const newTimelineRoute = require("./routes/newTimelineRoute");
+const profileRoute = require("./routes/profileRoute");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../frontend/pages"));
@@ -43,10 +44,7 @@ app.get("/feed", authenticateToken.authenticateToken, (req, res) => {
   res.render("feed");
 });
 
-app.get("/profile", async (req, res) => {
-  if (res.locals.user) res.render("profile");
-  else res.sendStatus(401);
-});
+app.use("/profile", profileRoute);
 
 app.get("/editprofile", (req, res) => {
   if (res.locals.user) res.render("edit_profile");
