@@ -54,12 +54,20 @@
       <section class="memories-container">
         <div class="current-timeline-container">
           <p class="current-timeline-name">Now in timeline <%= timelineId %></p>
+          <button id="new-memory-button">+ New Memory</button>
           <button id="remove-timeline-button">x Delete Timeline</button>
         </div>
         <div class="memories-container">
           <% if (memories[0].length > 0) { %> <% memories[0].forEach(memory => {
           %>
-          <div class="memory-item"><%= memory.memory_description %></div>
+          <div
+            class="memory-item"
+            style="
+              background-image: url('data:image/png;base64, <%= memory.picture %>');
+            "
+          >
+            <%= memory.memory_description %>
+          </div>
           <% }); %> <% } else { %>
           <p>No memories found for this timeline.</p>
           <% } %>
@@ -79,8 +87,51 @@
           </div>
         </div>
       </div>
+
+      <div class="modal" id="new-memory-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Add New Timeline</h2>
+          </div>
+          <br />
+          <form
+            id="new-memory-form"
+            action="/createnewmemory"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <label for="new-memory-picture">Upload your picture:</label>
+            <input
+              type="file"
+              accept="image/*"
+              id="new-memory-picture"
+              name="picture"
+              required
+            />
+            <br />
+            <label for="new-memory-description">Description: </label>
+            <input type="text" id="new-memory-description" name="description" />
+            <input
+              hidden
+              type="text"
+              name="timelineId"
+              value="<%= timelineId %>"
+            />
+            <br /><br />
+
+            <button
+              class="add-memory-modal-button"
+              id="add-memory-modal-button"
+            >
+              Add Timeline
+            </button>
+          </form>
+        </div>
+      </div>
     </main>
     <script src="/js/navDropdown.js"></script>
     <script src="/js/removeTimelineModal.js"></script>
+    <script src="/js/newMemoryModal.js"></script>
   </body>
 </html>

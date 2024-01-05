@@ -30,15 +30,13 @@ CREATE TABLE memories (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_edit_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     memory_description VARCHAR(255),
+    picture LONGBLOB,
     FOREIGN KEY (timeline_id) REFERENCES timelines(timeline_id)
 );
 
-CREATE TABLE memories_pictures (
-	picture_id INT AUTO_INCREMENT PRIMARY KEY,
-    memory_id INT,
-    picture LONGBLOB,
-    FOREIGN KEY (memory_id) REFERENCES memories (memory_id)
-);
+select * from memories;
+
+
 
 CREATE TABLE timeline_visits (
     visit_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -47,3 +45,24 @@ CREATE TABLE timeline_visits (
     FOREIGN KEY (timeline_id) REFERENCES timelines(timeline_id),
     FOREIGN KEY (visitor_id) REFERENCES users(user_id)
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+CREATE TABLE memories_pictures (
+	picture_id INT AUTO_INCREMENT PRIMARY KEY,
+    memory_id INT,
+    picture LONGBLOB,
+    FOREIGN KEY (memory_id) REFERENCES memories (memory_id)
+);
+*/

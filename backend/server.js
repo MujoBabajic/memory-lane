@@ -9,6 +9,7 @@ const loginRoute = require("./routes/loginRoute");
 const registrationRoute = require("./routes/registrationRoute");
 const logoutRoute = require("./routes/logoutRoute");
 const newTimelineRoute = require("./routes/newTimelineRoute");
+const newMemoryRoute = require("./routes/newMemoryRoute");
 const profileRoute = require("./routes/profileRoute");
 const timelineRoute = require("./routes/timelineRoute");
 const { time } = require("console");
@@ -32,6 +33,7 @@ app.use("/login", loginRoute);
 app.use("/register", registrationRoute);
 app.use("/logout", logoutRoute);
 app.use("/createnewtimeline", newTimelineRoute);
+app.use("/createnewmemory", newMemoryRoute);
 
 app.get("*", authenticateToken.checkUser);
 app.get("/", (req, res) => {

@@ -253,7 +253,8 @@ form a {
 }
 
 #new-timeline-button,
-#remove-timeline-button {
+#remove-timeline-button,
+#new-memory-button {
   padding: 10px;
   cursor: pointer;
   border-radius: 5px;
@@ -261,7 +262,8 @@ form a {
 }
 
 #new-timeline-button:hover,
-#remove-timeline-button:hover {
+#remove-timeline-button:hover,
+#new-memory-button:hover {
   background-color: #bbbbbb;
 }
 
@@ -299,10 +301,14 @@ hr {
   align-items: center;
 }
 
-.timeline-item:hover,
-.memory-item:hover {
+.timeline-item:hover {
   background-color: rgba(161, 159, 159, 0.3);
   cursor: pointer;
+}
+
+.memory-item:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .current-timeline-container {
