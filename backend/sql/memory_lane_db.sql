@@ -24,10 +24,6 @@ CREATE TABLE timelines (
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-select * from timelines;
-
-update timelines set text_font = 'tahoma' where timeline_id = 1;
-
 CREATE TABLE memories (
     memory_id INT AUTO_INCREMENT PRIMARY KEY,
     timeline_id INT,
@@ -35,10 +31,8 @@ CREATE TABLE memories (
     last_edit_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     memory_description VARCHAR(255),
     picture LONGBLOB,
-    FOREIGN KEY (timeline_id) REFERENCES timelines(timeline_id)
+    FOREIGN KEY (timeline_id) REFERENCES timelines(timeline_id) ON DELETE CASCADE
 );
-
-select * from memories;
 
 CREATE TABLE timeline_visits (
     visit_id INT AUTO_INCREMENT PRIMARY KEY,

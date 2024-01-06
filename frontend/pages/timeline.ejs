@@ -84,11 +84,18 @@
             <h2>Remove Timeline</h2>
           </div>
           <br />
-          <h3>Confirm timeline deletion</h3>
-          <div class="confirmation buttons-container">
-            <button id="yes-confirmation-button">Yes</button>
-            <button id="no-confirmation-button">No</button>
-          </div>
+          <form action="/deletetimeline" method="POST">
+            <h3>Confirm timeline deletion</h3>
+            <input
+              hidden
+              type="text"
+              name="timelineId"
+              value="<%= timelineId %>"
+            />
+            <div class="confirmation buttons-container">
+              <button id="yes-confirmation-button">Yes</button>
+            </div>
+          </form>
         </div>
       </div>
 

@@ -23,7 +23,6 @@ async function createNewMemory(req, res) {
       const { description } = req.body;
       const timelineId = req.body.timelineId;
 
-      console.log(description, timelineId);
       await newMemoryModel.createMemory(timelineId, picture.data, description);
       res.status(200).redirect(`/timeline/${timelineId}`);
     });

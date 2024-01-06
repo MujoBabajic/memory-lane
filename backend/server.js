@@ -11,6 +11,7 @@ const logoutRoute = require("./routes/logoutRoute");
 const newTimelineRoute = require("./routes/newTimelineRoute");
 const newMemoryRoute = require("./routes/newMemoryRoute");
 const editTimelineRoute = require("./routes/editTimelineRoute");
+const deleteTimelineRoute = require("./routes/deleteTimelineRoute");
 const profileRoute = require("./routes/profileRoute");
 const timelineRoute = require("./routes/timelineRoute");
 const { time } = require("console");
@@ -36,6 +37,7 @@ app.use("/logout", logoutRoute);
 app.use("/createnewtimeline", newTimelineRoute);
 app.use("/createnewmemory", newMemoryRoute);
 app.use("/edittimeline", editTimelineRoute);
+app.use("/deletetimeline", deleteTimelineRoute);
 
 app.get("*", authenticateToken.checkUser);
 app.get("/", (req, res) => {
