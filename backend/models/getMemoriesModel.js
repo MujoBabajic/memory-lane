@@ -13,4 +13,16 @@ async function getMemoriesForTimeline(timelineId) {
   }
 }
 
-module.exports = { getMemoriesForTimeline };
+async function getTimelineStyleData(timelineId) {
+  try {
+    const timelineStyleData = await db.execute(
+      `SELECT * FROM timelines where timeline_id = ?`,
+      [timelineId]
+    );
+    return timelineStyleData;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports = { getMemoriesForTimeline, getTimelineStyleData };

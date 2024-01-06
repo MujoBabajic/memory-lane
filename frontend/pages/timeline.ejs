@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Lane</title>
     <link rel="stylesheet" href="/css/styles.css" />
+    <style></style>
   </head>
   <body>
     <header>
@@ -53,9 +54,12 @@
       <br />
       <section class="memories-container">
         <div class="current-timeline-container">
-          <p class="current-timeline-name">Now in timeline <%= timelineId %></p>
+          <p class="current-timeline-name">
+            Now in timeline: <%= timelineStyles[0][0].title %>
+          </p>
           <button id="new-memory-button">+ New Memory</button>
           <button id="remove-timeline-button">x Delete Timeline</button>
+          <button id="edit-timeline-button">? Edit Timeline</button>
         </div>
         <div class="memories-container">
           <% if (memories[0].length > 0) { %> <% memories[0].forEach(memory => {
@@ -129,9 +133,78 @@
           </form>
         </div>
       </div>
+
+      <div class="modal" id="edit-timeline-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Edit Timeline</h2>
+          </div>
+          <br />
+          <form id="edit-timeline-form" action="/edittimeline" method="POST">
+            <label for="edit-timeline-title">Timeline name: </label>
+            <input type="text" id="edit-timeline-title" name="title" required />
+            <br />
+            <label for="edit-timeline-privacy">Private timeline: </label>
+            <select name="isPrivate" id="edit-timeline-privacy">
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+            <br />
+            <label for="edit-timeline-font">Timeline font: </label>
+            <select name="textFont" id="edit-timeline-font">
+              <option value="arial" style="font-family: arial">
+                Default (Arial)
+              </option>
+              <option value="cursive" style="font-family: cursive">
+                Cursive
+              </option>
+              <option value="monospace" style="font-family: monospace">
+                Monospace
+              </option>
+              <option value="verdana" style="font-family: verdana">
+                Verdana
+              </option>
+              <option value="tahoma" style="font-family: tahoma">Tahoma</option>
+            </select>
+            <br />
+            <label for="edit-timeline-background-color">Timeline color: </label>
+            <select name="bgColor" id="edit-timeline-background-color">
+              <option value="white">Default (White)</option>
+              <option value="orange">Orange</option>
+              <option value="teal">Teal</option>
+              <option value="gray">Gray</option>
+            </select>
+
+            <input
+              hidden
+              type="text"
+              name="timelineId"
+              value="<%= timelineId %>"
+            />
+            <br /><br />
+
+            <button
+              class="edit-timeline-modal-button"
+              id="edit-timeline-modal-button"
+            >
+              Edit Timeline
+            </button>
+          </form>
+        </div>
+      </div>
     </main>
     <script src="/js/navDropdown.js"></script>
     <script src="/js/removeTimelineModal.js"></script>
     <script src="/js/newMemoryModal.js"></script>
+    <script src="/js/editTimelineModal.js"></script>
+    <script>
+      const main = document.querySelector("main");
+      const memoriesContainer = document.querySelector(".memories-container");
+      const bgColor = "<%= timelineStyles[0][0].bg_color %>";
+      const text_font = "<%= timelineStyles[0][0].text_font %>";
+      main.style.backgroundColor = bgColor;
+      memoriesContainer.style.fontFamily = text_font;
+    </script>
   </body>
 </html>

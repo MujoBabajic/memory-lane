@@ -254,7 +254,8 @@ form a {
 
 #new-timeline-button,
 #remove-timeline-button,
-#new-memory-button {
+#new-memory-button,
+#edit-timeline-button {
   padding: 10px;
   cursor: pointer;
   border-radius: 5px;
@@ -263,7 +264,8 @@ form a {
 
 #new-timeline-button:hover,
 #remove-timeline-button:hover,
-#new-memory-button:hover {
+#new-memory-button:hover,
+#edit-timeline-button:hover {
   background-color: #bbbbbb;
 }
 

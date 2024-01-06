@@ -11,6 +11,4 @@ async function createMemory(timelineId, picture, description) {
   }
 }
 
-module.exports = {
-  createMemory,
-};
+module.exports = { createMemory };

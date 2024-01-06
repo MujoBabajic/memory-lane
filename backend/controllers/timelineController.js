@@ -5,7 +5,10 @@ async function getMemories(req, res) {
 
   try {
     const memories = await getMemoriesModel.getMemoriesForTimeline(timelineId);
-    res.render("timeline", { timelineId, memories });
+    const timelineStyles = await getMemoriesModel.getTimelineStyleData(
+      timelineId
+    );
+    res.render("timeline", { timelineId, memories, timelineStyles });
   } catch (err) {
     console.log(err);
     res.status(500).send("Internal Server Error");

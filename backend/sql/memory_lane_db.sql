@@ -24,6 +24,10 @@ CREATE TABLE timelines (
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+select * from timelines;
+
+update timelines set text_font = 'tahoma' where timeline_id = 1;
+
 CREATE TABLE memories (
     memory_id INT AUTO_INCREMENT PRIMARY KEY,
     timeline_id INT,
@@ -35,8 +39,6 @@ CREATE TABLE memories (
 );
 
 select * from memories;
-
-
 
 CREATE TABLE timeline_visits (
     visit_id INT AUTO_INCREMENT PRIMARY KEY,
