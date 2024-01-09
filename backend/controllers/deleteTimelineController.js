@@ -3,7 +3,7 @@ const deleteTimelineModel = require("../models/deleteTimelineModel");
 async function deleteTimeline(req, res) {
   try {
     const { timelineId } = req.body;
-    console.log(timelineId);
+
     await deleteTimelineModel.deleteTimelineFromDb(timelineId);
     res.status(200).redirect("/profile");
   } catch (err) {

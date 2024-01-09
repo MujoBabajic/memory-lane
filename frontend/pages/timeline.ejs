@@ -64,14 +64,16 @@
         <div class="memories-container">
           <% if (memories[0].length > 0) { %> <% memories[0].forEach(memory => {
           %>
-          <div
-            class="memory-item"
-            style="
-              background-image: url('data:image/png;base64, <%= memory.picture %>');
-            "
-          >
-            <%= memory.memory_description %>
-          </div>
+          <a href="/memory/<%=memory.memory_id %>">
+            <div
+              class="memory-item"
+              style="
+                background-image: url('data:image/png;base64, <%= memory.picture %>');
+              "
+            >
+              <%= memory.memory_description %>
+            </div>
+          </a>
           <% }); %> <% } else { %>
           <p>No memories found for this timeline.</p>
           <% } %>

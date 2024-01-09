@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Lane</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style></style>
+  </head>
+  <body>
+    <header>
+      <a href="/feed" class="header-logo">Memory Lane</a>
+      <nav>
+        <div class="profile-nav-button">
+          <% if(user[0].profile_picture) {%>
+          <img
+            src="data:image/jpeg;base64,<%= Buffer.from(user[0].profile_picture)%>"
+            alt="Profile Image"
+          />
+          <% }else{ %>
+          <img src="/images/default_profile_img.jpg" alt="" />
+          <% }%>
+          <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/logout">Log Out</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="user-info-container">
+        <div class="profile-picture-container">
+          <% if(user[0].profile_picture) {%>
+          <img
+            src="data:image/jpeg;base64,<%= Buffer.from(user[0].profile_picture)%>"
+            alt="Profile Image"
+          />
+          <% }else{ %>
+          <img src="/images/default_profile_img.jpg" alt="Profile Image" />
+          <% }%>
+        </div>
+        <div class="username-and-edit-button-container">
+          <div id="profile-user-name">
+            <%= `${user[0].first_name} ${user[0].last_name}` %>
+          </div>
+          <a href="/editprofile"
+            ><button id="edit-profile-button">Edit profile</button></a
+          >
+        </div>
+      </section>
+      <br />
+      <hr />
+      <br />
+      <section class="memories-container">
+        <div class="current-memory-container">
+          <button id="remove-memory-button">x Delete Memory</button>
+          <button id="edit-memory-button">? Edit Memory</button>
+        </div>
+        <div class="memory">
+          <div
+            class="memory-item"
+            style="
+              background-image: url('data:image/png;base64, <%= memory[0][0].picture %>');
+            "
+          ></div>
+        </div>
+      </section>
+
+      <div class="modal" id="remove-memory-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Remove Memory</h2>
+          </div>
+          <br />
+          <form action="/deletememory" method="POST">
+            <h3>Confirm memory deletion</h3>
+            <input
+              hidden
+              type="text"
+              name="memoryId"
+              value="<%= memory[0][0].memory_id %>"
+            />
+            <input
+              hidden
+              type="text"
+              name="timelineId"
+              value="<%= memory[0][0].timeline_id %>"
+            />
+            <div class="confirmation buttons-container">
+              <button id="yes-confirmation-button">Yes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal" id="edit-memory-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Edit Memory</h2>
+          </div>
+          <br />
+          <form id="edit-memory-form" action="/editmemory" method="POST">
+            <label for="edit-memory-description">Memory description: </label>
+            <input
+              type="text"
+              id="edit-memory-description"
+              name="description"
+              required
+            />
+            <br />
+
+            <input hidden type="text" name="memoryId" />
+            <br /><br />
+
+            <button
+              class="edit-memory-modal-button"
+              id="edit-memory-modal-button"
+            >
+              Edit Memory
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="/js/navDropdown.js"></script>
+    <script src="/js/editMemoryModal.js"></script>
+    <script src="/js/removeMemoryModal.js"></script>
+  </body>
+</html>

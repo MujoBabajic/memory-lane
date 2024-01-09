@@ -12,8 +12,10 @@ const newTimelineRoute = require("./routes/newTimelineRoute");
 const newMemoryRoute = require("./routes/newMemoryRoute");
 const editTimelineRoute = require("./routes/editTimelineRoute");
 const deleteTimelineRoute = require("./routes/deleteTimelineRoute");
+const deleteMemoryRoute = require("./routes/deleteMemoryRoute");
 const profileRoute = require("./routes/profileRoute");
 const timelineRoute = require("./routes/timelineRoute");
+const memoryRoute = require("./routes/memoryRoute");
 const { time } = require("console");
 
 app.set("view engine", "ejs");
@@ -38,6 +40,7 @@ app.use("/createnewtimeline", newTimelineRoute);
 app.use("/createnewmemory", newMemoryRoute);
 app.use("/edittimeline", editTimelineRoute);
 app.use("/deletetimeline", deleteTimelineRoute);
+app.use("/deletememory", deleteMemoryRoute);
 
 app.get("*", authenticateToken.checkUser);
 app.get("/", (req, res) => {
@@ -51,15 +54,13 @@ app.get("/register-page", (req, res) => {
 app.get("/feed", authenticateToken.authenticateToken, (req, res) => {
   res.render("feed");
 });
-
 app.use("/profile", profileRoute);
-
 app.get("/editprofile", (req, res) => {
   if (res.locals.user) res.render("edit_profile");
   else res.sendStatus(401);
 });
-
 app.use("/timeline", timelineRoute);
+app.use("/memory", memoryRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
