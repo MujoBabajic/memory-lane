@@ -42,14 +42,37 @@ CREATE TABLE timeline_visits (
     FOREIGN KEY (visitor_id) REFERENCES users(user_id)
 );
 
+DELIMITER //
 
+CREATE TRIGGER update_memories_last_edit_at
+BEFORE UPDATE ON memories
+FOR EACH ROW
+BEGIN
+    IF NEW.memory_description <=> OLD.memory_description
+        OR NEW.picture <=> OLD.picture THEN
+        SET NEW.last_edit_at = CURRENT_TIMESTAMP;
+    END IF;
+END;
+//
 
+DELIMITER ;
 
+DELIMITER //
 
+CREATE TRIGGER update_timelines_last_edit_at
+BEFORE UPDATE ON timelines
+FOR EACH ROW
+BEGIN
+    IF NEW.title <=> OLD.title
+        OR NEW.is_private <=> OLD.is_private
+        OR NEW.text_font <=> OLD.text_font 
+        OR NEW.bg_color <=> OLD.bg_color THEN
+        SET NEW.last_edit_at = CURRENT_TIMESTAMP;
+    END IF;
+END;
+//
 
-
-
-
+DELIMITER ;
 
 
 

@@ -255,7 +255,9 @@ form a {
 #new-timeline-button,
 #remove-timeline-button,
 #new-memory-button,
-#edit-timeline-button {
+#edit-timeline-button,
+#edit-memory-button,
+#remove-memory-button {
   padding: 10px;
   cursor: pointer;
   border-radius: 5px;
@@ -265,7 +267,9 @@ form a {
 #new-timeline-button:hover,
 #remove-timeline-button:hover,
 #new-memory-button:hover,
-#edit-timeline-button:hover {
+#edit-timeline-button:hover,
+#edit-memory-button:hover,
+#remove-memory-button:hover {
   background-color: #bbbbbb;
 }
 
@@ -301,6 +305,8 @@ hr {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .timeline-item:hover {
@@ -313,7 +319,8 @@ hr {
   opacity: 0.7;
 }
 
-.current-timeline-container {
+.current-timeline-container,
+.current-memory-container {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -475,4 +482,29 @@ hr {
   font-size: 13px;
   color: #333333;
   margin-top: 10px;
+}
+
+/* MEMORY */
+
+.memory img {
+  background-repeat: no-repeat;
+  width: auto;
+  height: auto;
+
+  max-width: 800px;
+  max-height: 800px;
+}
+
+.memory-description {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.memory-dates {
+  display: flex;
+  justify-content: space-between;
+}
+
+.memory-dates p {
+  font-size: 15px;
 }
