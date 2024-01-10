@@ -20,7 +20,7 @@
           <img src="/images/default_profile_img.jpg" alt="" />
           <% }%>
           <div class="dropdown-content">
-            <a href="/profile">Profile</a>
+            <a href="/profile/<%=user[0].user_id %>">Profile</a>
             <a href="/logout">Log Out</a>
           </div>
         </div>
@@ -30,9 +30,9 @@
     <main>
       <section class="user-info-container">
         <div class="profile-picture-container">
-          <% if(user[0].profile_picture) {%>
+          <% if(userData[0].profile_picture) {%>
           <img
-            src="data:image/jpeg;base64,<%= Buffer.from(user[0].profile_picture)%>"
+            src="data:image/jpeg;base64,<%= Buffer.from(userData[0].profile_picture)%>"
             alt="Profile Image"
           />
           <% }else{ %>
@@ -41,22 +41,26 @@
         </div>
         <div class="username-and-edit-button-container">
           <div id="profile-user-name">
-            <%= `${user[0].first_name} ${user[0].last_name}` %>
+            <%= `${userData[0].first_name} ${userData[0].last_name}` %>
           </div>
+          <% if (isOwnProfile) { %>
           <a href="/editprofile"
             ><button id="edit-profile-button">Edit profile</button></a
           >
+          <% } %>
         </div>
       </section>
       <br />
       <hr />
       <br />
       <div class="new-timeline-button-container">
+        <% if (isOwnProfile) { %>
         <button id="new-timeline-button">+ New Timeline</button>
+        <% } %>
       </div>
-      <% if (data[0].length>0) { %>
+      <% if (timelinesData[0].length>0) { %>
       <section class="timeline-select-container">
-        <% data[0].forEach(timeline => { %>
+        <% timelinesData[0].forEach(timeline => { %>
         <a href="/timeline/<%= timeline.timeline_id %>">
           <div class="timeline-item"><%= timeline.title %></div>
         </a>
@@ -73,7 +77,11 @@
             <h2>Add New Timeline</h2>
           </div>
           <br />
-          <form id="new-timeline-form" action="createnewtimeline" method="POST">
+          <form
+            id="new-timeline-form"
+            action="/createnewtimeline"
+            method="POST"
+          >
             <label for="new-timeline-name">Timeline Name:</label>
             <input type="text" id="new-timeline-name" name="title" required />
             <label for="new-timeline-private-toggle">Private:</label>

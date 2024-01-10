@@ -26,7 +26,7 @@ async function loginUser(req, res) {
 
     if (passwordMatch) {
       const accessToken = jwt.sign(
-        { userEmail: email },
+        { userId: userData[0].user_id, userEmail: email },
         process.env.ACCESS_TOKEN_SECRET,
         {
           expiresIn: "1d",

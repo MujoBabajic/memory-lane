@@ -1,12 +1,10 @@
 const db = require("./dbConnection");
-const loginModel = require("./loginModel");
 
-async function getTimelinesForUser(email) {
+async function getTimelinesForUser(userId) {
   try {
-    const userDataFromDb = await loginModel.getUserByEmail(email);
     const timelinesData = await db.execute(
       `SELECT * FROM timelines where user_id = ?`,
-      [userDataFromDb[0].user_id]
+      [userId]
     );
     return timelinesData;
   } catch (err) {
@@ -14,4 +12,15 @@ async function getTimelinesForUser(email) {
   }
 }
 
-module.exports = { getTimelinesForUser };
+async function getUserById(userId) {
+  try {
+    const [data] = await db.execute(`SELECT * FROM users WHERE user_id = ?`, [
+      userId,
+    ]);
+    return data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+module.exports = { getTimelinesForUser, getUserById };

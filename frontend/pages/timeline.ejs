@@ -21,7 +21,7 @@
           <img src="/images/default_profile_img.jpg" alt="" />
           <% }%>
           <div class="dropdown-content">
-            <a href="/profile">Profile</a>
+            <a href="/profile/<%=user[0].user_id %>">Profile</a>
             <a href="/logout">Log Out</a>
           </div>
         </div>
@@ -31,9 +31,9 @@
     <main>
       <section class="user-info-container">
         <div class="profile-picture-container">
-          <% if(user[0].profile_picture) {%>
+          <% if(userData[0].profile_picture) {%>
           <img
-            src="data:image/jpeg;base64,<%= Buffer.from(user[0].profile_picture)%>"
+            src="data:image/jpeg;base64,<%= Buffer.from(userData[0].profile_picture)%>"
             alt="Profile Image"
           />
           <% }else{ %>
@@ -42,16 +42,19 @@
         </div>
         <div class="username-and-edit-button-container">
           <div id="profile-user-name">
-            <%= `${user[0].first_name} ${user[0].last_name}` %>
+            <%= `${userData[0].first_name} ${userData[0].last_name}` %>
           </div>
+          <% if(isOwnProfile) {%>
           <a href="/editprofile"
             ><button id="edit-profile-button">Edit profile</button></a
           >
+          <% }%>
         </div>
       </section>
       <br />
       <hr />
       <br />
+
       <section class="memories-container">
         <div class="current-timeline-container">
           <% if(timelineStyles[0][0].is_private == 1) {%>
@@ -62,12 +65,19 @@
           <p class="current-timeline-name">
             Now in timeline: <%= timelineStyles[0][0].title %>
           </p>
-          <%}%>
 
+          <%}%> <% if(isOwnProfile) {%>
           <button id="new-memory-button">+ New Memory</button>
           <button id="remove-timeline-button">x Delete Timeline</button>
           <button id="edit-timeline-button">? Edit Timeline</button>
+          <% }%>
         </div>
+        <% if(timelineStyles[0][0].is_private && !isOwnProfile) {%>
+        <div class="memories-container">
+          You cannot view this private timeline
+        </div>
+        <%} else {%>
+
         <div class="memories-container">
           <% if (memories[0].length > 0) { %> <% memories[0].forEach(memory => {
           %>
@@ -83,7 +93,9 @@
           <p>No memories found for this timeline.</p>
           <% } %>
         </div>
+        <%}%>
       </section>
+
       <div class="modal" id="remove-timeline-modal">
         <div class="modal-content">
           <div class="modal-header">
