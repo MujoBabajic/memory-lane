@@ -12,6 +12,7 @@ const newTimelineRoute = require("./routes/newTimelineRoute");
 const newMemoryRoute = require("./routes/newMemoryRoute");
 const editTimelineRoute = require("./routes/editTimelineRoute");
 const deleteTimelineRoute = require("./routes/deleteTimelineRoute");
+const editMemoryRoute = require("./routes/editMemoryRoute");
 const deleteMemoryRoute = require("./routes/deleteMemoryRoute");
 const profileRoute = require("./routes/profileRoute");
 const timelineRoute = require("./routes/timelineRoute");
@@ -40,6 +41,7 @@ app.use("/createnewtimeline", newTimelineRoute);
 app.use("/createnewmemory", newMemoryRoute);
 app.use("/edittimeline", editTimelineRoute);
 app.use("/deletetimeline", deleteTimelineRoute);
+app.use("/editmemory", editMemoryRoute);
 app.use("/deletememory", deleteMemoryRoute);
 
 app.get("*", authenticateToken.checkUser);
