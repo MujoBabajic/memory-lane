@@ -43,7 +43,6 @@ CREATE TABLE timeline_visits (
 );
 
 DELIMITER //
-
 CREATE TRIGGER update_memories_last_edit_at
 BEFORE UPDATE ON memories
 FOR EACH ROW
@@ -54,11 +53,9 @@ BEGIN
     END IF;
 END;
 //
-
 DELIMITER ;
 
 DELIMITER //
-
 CREATE TRIGGER update_timelines_last_edit_at
 BEFORE UPDATE ON timelines
 FOR EACH ROW
@@ -71,7 +68,6 @@ BEGIN
     END IF;
 END;
 //
-
 DELIMITER ;
 
 
