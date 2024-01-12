@@ -11,6 +11,11 @@ async function getMemories(req, res) {
     const timelineStyles = await getMemoriesModel.getTimelineStyleData(
       timelineId
     );
+    const timelineVisitsData = await timelineModel.getTimelineVisitsCount(
+      timelineId
+    );
+    const timelineVisitsCount = timelineVisitsData[0][0].visitCount;
+
     const userData = await timelineModel.getUserById(
       timelineStyles[0][0].user_id
     );
@@ -19,12 +24,18 @@ async function getMemories(req, res) {
       userData[0].user_id
     );
 
+    if (!isOwnProfile) {
+      const userId = res.locals.user[0].user_id;
+      await timelineModel.registerTimelineVisit(timelineId, userId);
+    }
+
     res.render("timeline", {
       timelineId,
       memories,
       timelineStyles,
       userData,
       isOwnProfile,
+      timelineVisitsCount,
     });
   } catch (err) {
     console.log(err);

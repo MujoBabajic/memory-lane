@@ -23,4 +23,35 @@ async function getUserById(userId) {
   }
 }
 
-module.exports = { getTimelinesForUser, getUserById };
+async function getTimelineVisitsCount(timelineId) {
+  try {
+    const visitsCount = await db.execute(
+      `SELECT COUNT(*) AS visitCount FROM timeline_visits
+    WHERE timeline_id = ?`,
+      [timelineId]
+    );
+
+    return visitsCount;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function registerTimelineVisit(timelineId, visitorId) {
+  try {
+    await db.execute(
+      `INSERT INTO timeline_visits (timeline_id, visitor_id)
+    VALUES (?, ?)`,
+      [timelineId, visitorId]
+    );
+  } catch (err) {
+    console.log(er);
+  }
+}
+
+module.exports = {
+  getTimelinesForUser,
+  getUserById,
+  registerTimelineVisit,
+  getTimelineVisitsCount,
+};

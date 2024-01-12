@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Lane</title>
     <link rel="stylesheet" href="/css/styles.css" />
-    <style></style>
   </head>
   <body>
     <header>
@@ -58,18 +57,29 @@
       <section class="memories-container">
         <div class="current-timeline-container">
           <% if(timelineStyles[0][0].is_private == 1) {%>
-          <p class="current-timeline-name">
-            Now in timeline: <%= timelineStyles[0][0].title %> (Private)
-          </p>
+          <div class="timeline-info">
+            <p class="current-timeline-name">
+              Now in timeline: <%= timelineStyles[0][0].title %> (Private)
+            </p>
+            <p class="timeline-visits-count">
+              <%=timelineVisitsCount %> Visits
+            </p>
+          </div>
           <% }else { %>
-          <p class="current-timeline-name">
-            Now in timeline: <%= timelineStyles[0][0].title %>
-          </p>
-
+          <div class="timeline-info">
+            <p class="current-timeline-name">
+              Now in timeline: <%= timelineStyles[0][0].title %> (Private)
+            </p>
+            <p class="timeline-visits-count">
+              <%=timelineVisitsCount %> Visits
+            </p>
+          </div>
           <%}%> <% if(isOwnProfile) {%>
-          <button id="new-memory-button">+ New Memory</button>
-          <button id="remove-timeline-button">x Delete Timeline</button>
-          <button id="edit-timeline-button">? Edit Timeline</button>
+          <div class="timeline-crud-buttons">
+            <button id="new-memory-button">+ New Memory</button>
+            <button id="remove-timeline-button">x Delete Timeline</button>
+            <button id="edit-timeline-button">? Edit Timeline</button>
+          </div>
           <% }%>
         </div>
         <% if(timelineStyles[0][0].is_private && !isOwnProfile) {%>

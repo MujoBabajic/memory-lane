@@ -281,6 +281,17 @@ form a {
   justify-content: center;
 }
 
+.timeline-visit-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeline-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .timeline-select-container a {
   text-decoration: none;
   color: black;
