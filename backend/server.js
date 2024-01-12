@@ -17,6 +17,7 @@ const deleteMemoryRoute = require("./routes/deleteMemoryRoute");
 const profileRoute = require("./routes/profileRoute");
 const timelineRoute = require("./routes/timelineRoute");
 const memoryRoute = require("./routes/memoryRoute");
+const feedRoute = require("./routes/feedRoute");
 const { time } = require("console");
 
 app.set("view engine", "ejs");
@@ -53,10 +54,9 @@ app.get("/register-page", (req, res) => {
   if (res.locals.user) res.redirect("/feed");
   else res.render("registration", { errors: "" });
 });
-app.get("/feed", authenticateToken.authenticateToken, (req, res) => {
-  res.render("feed");
-});
+app.use("/feed", authenticateToken.authenticateToken, feedRoute);
 app.use("/profile", profileRoute);
+
 app.get("/editprofile", (req, res) => {
   if (res.locals.user) res.render("edit_profile");
   else res.sendStatus(401);

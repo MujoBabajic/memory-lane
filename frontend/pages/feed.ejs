@@ -34,50 +34,62 @@
     </header>
 
     <main>
+      <% if (publicMemories[0].length > 0) { %>
       <section class="feed-container">
+        <% publicMemories[0].forEach(memory => { %>
         <div class="feed-post">
           <div class="post-heading">
-            <img src="/images/maca.jpg" alt="" />
-            <p class="post-username">jomu</p>
+            <% if(memory.profile_picture){%>
+            <a href="/profile/<%=memory.user_id%>">
+              <img
+                src="data:image/jpeg;base64,<%= Buffer.from(memory.profile_picture)%>"
+                alt=""
+              />
+            </a>
+            <%} else{%>
+            <a href="/profile/<%=memory.user_id%>">
+              <img src="/images/default_profile_img.jpg" alt="" />
+            </a>
+            <%}%>
+            <p class="post-username">
+              <%= `${memory.first_name} ${memory.last_name}` %>
+            </p>
           </div>
           <div class="post-picture">
-            <img src="/images/maca.jpg" alt="" />
+            <a href="/memory/<%=memory.memory_id%>">
+              <img
+                src="data:image/jpeg;base64,<%= Buffer.from(memory.picture)%>"
+                alt=""
+              />
+            </a>
           </div>
-          <div class="post-description">My cat, Boban</div>
+          <div class="post-description"><%=memory.memory_description %></div>
           <div class="post-dates">
-            <p>Created at:</p>
-            <p>Last edit at:</p>
+            <p>Created at: <%= memory.created_at %></p>
+            <p>Last edit at: <%=memory.last_edit_at %></p>
           </div>
         </div>
-        <div class="feed-post">
-          <div class="post-heading">
-            <img src="/images/maca.jpg" alt="" />
-            <p class="post-username">jomu</p>
-          </div>
-          <div class="post-picture">
-            <img src="/images/wf.jpg" alt="" />
-          </div>
-          <div class="post-description">Some nice roses</div>
-          <div class="post-dates">
-            <p>Created at:</p>
-            <p>Last edit at:</p>
-          </div>
-        </div>
-        <div class="feed-post">
-          <div class="post-heading">
-            <img src="/images/maca.jpg" alt="" />
-            <p class="post-username">jomu</p>
-          </div>
-          <div class="post-picture">
-            <img src="/images/20221103_024205.jpg" alt="" />
-          </div>
-          <div class="post-description">My guitars</div>
-          <div class="post-dates">
-            <p>Created at: 16/12/2023</p>
-            <p>Last edit at: 16/12/2023</p>
-          </div>
-        </div>
+        <% }); %>
       </section>
+
+      <div class="pagination">
+        <% if (currentPage > 1) { %>
+        <a href="/feed?page=<%= currentPage - 1 %>" class="pagination-button"
+          >Previous</a
+        >
+        <% } %>
+
+        <span class="pagination-current">Page <%= currentPage %></span>
+
+        <% if (publicMemories[0].length === 10) { %>
+        <a href="/feed?page=<%= currentPage + 1 %>" class="pagination-button"
+          >Next</a
+        >
+        <% } %>
+      </div>
+      <% } else { %>
+      <p>No memories.</p>
+      <% } %>
     </main>
     <script src="/js/navDropdown.js"></script>
   </body>

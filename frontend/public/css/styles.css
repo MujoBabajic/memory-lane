@@ -508,3 +508,30 @@ hr {
 .memory-dates p {
   font-size: 15px;
 }
+
+/* PAGINATION */
+
+.pagination {
+  margin: 20px;
+}
+
+.pagination-button {
+  background-color: #d8d8d8;
+  color: black;
+}
+
+.pagination-button:visited {
+  color: black;
+}
+
+.pagination-button:hover {
+  background-color: #bbbbbb;
+}
+
+.pagination-button,
+.pagination-current {
+  font-size: 20px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+}
