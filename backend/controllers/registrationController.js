@@ -14,7 +14,9 @@ async function registerUser(req, res) {
     const emailExists = await registrationModel.checkIfEmailExists(email);
 
     if (emailExists) {
-      return res.send("Email already in use");
+      return res
+        .status(409)
+        .render("registration", { errors: "", emailExists });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -28,7 +30,7 @@ async function registerUser(req, res) {
       hashedPassword: hashedPassword,
     });
 
-    return res.status(200).send("New user registered");
+    return res.status(200).render("registrationSuccess");
   } catch (err) {
     console.log(err);
     return res.status(500).send("Internal server error");

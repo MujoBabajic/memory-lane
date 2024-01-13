@@ -52,7 +52,7 @@ app.get("/", (req, res) => {
 });
 app.get("/register-page", (req, res) => {
   if (res.locals.user) res.redirect("/feed");
-  else res.render("registration", { errors: "" });
+  else res.render("registration", { errors: "", emailExists: false });
 });
 app.use("/feed", authenticateToken.authenticateToken, feedRoute);
 app.use("/profile", profileRoute);

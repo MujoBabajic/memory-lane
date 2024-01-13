@@ -81,7 +81,9 @@
           <div class="error-message-div">
             <% if (errors && errors.email) { %>
             <p class="error-message"><%= errors.email.msg %></p>
-            <% } %>
+            <% } %> <% if(emailExists) {%>
+            <p class="error-message">Email already in use</p>
+            <%}%>
           </div>
           <input
             type="password"
@@ -95,6 +97,7 @@
             <p class="error-message"><%= errors.password.msg %></p>
             <% } %>
           </div>
+
           <button id="sign-up-button">SIGN UP</button>
           <br />
           <br />
