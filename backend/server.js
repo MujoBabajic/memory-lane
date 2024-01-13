@@ -48,7 +48,12 @@ app.use("/deletememory", deleteMemoryRoute);
 app.get("*", authenticateToken.checkUser);
 app.get("/", (req, res) => {
   if (res.locals.user) res.redirect("/feed");
-  else res.render("login", { errors: "" });
+  else
+    res.render("login", {
+      errors: "",
+      credentialsError: false,
+      userNotFound: false,
+    });
 });
 app.get("/register-page", (req, res) => {
   if (res.locals.user) res.redirect("/feed");

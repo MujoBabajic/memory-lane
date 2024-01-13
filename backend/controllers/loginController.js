@@ -7,7 +7,13 @@ const jwt = require("jsonwebtoken");
 async function loginUser(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).render("login", { errors: errors.mapped() });
+    return res
+      .status(422)
+      .render("login", {
+        errors: errors.mapped(),
+        credentialsError: false,
+        userNotFound: false,
+      });
   }
 
   const { email, password } = req.body;
@@ -16,7 +22,11 @@ async function loginUser(req, res) {
     const userData = await loginModel.getUserByEmail(email);
 
     if (!userData || userData.length === 0) {
-      return res.status(400).send("User not found");
+      return res.status(400).render("login", {
+        errors: "",
+        userNotFound: true,
+        credentialsError: false,
+      });
     }
 
     const passwordMatch = await bcrypt.compare(
@@ -41,7 +51,11 @@ async function loginUser(req, res) {
       });
       res.redirect("/feed");
     } else {
-      return res.status(400).send("Incorrect email or password");
+      return res.status(400).render("login", {
+        errors: "",
+        credentialsError: true,
+        userNotFound: false,
+      });
     }
   } catch (err) {
     console.log(err);

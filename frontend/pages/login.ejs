@@ -49,7 +49,15 @@
             <p class="error-message"><%= errors.password.msg %></p>
             <% } %>
           </div>
-
+          <% if(credentialsError){%>
+          <div class="error-message-div">
+            <p class="error-message">Incorrect email or password</p>
+          </div>
+          <%}else if(userNotFound){%>
+          <div class="error-message-div">
+            <p class="error-message">User not found</p>
+          </div>
+          <%}%>
           <button id="login-button">LOGIN</button>
           <br />
           <br />
