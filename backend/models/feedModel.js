@@ -11,6 +11,7 @@ async function getPublicMemories(page, limit) {
     INNER JOIN timelines t ON m.timeline_id = t.timeline_id
     INNER JOIN users u ON t.user_id = u.user_id
     WHERE t.is_private = 0
+    ORDER BY m.created_at DESC
     LIMIT ${offset}, ${limit};
     `
     );

@@ -32,7 +32,7 @@ async function registerUser(req, res) {
       hashedPassword: hashedPassword,
     });
 
-    return res.status(200).render("registrationSuccess");
+    res.status(200).render("registrationSuccess");
   } catch (err) {
     console.log(err);
     return res.status(500).send("Internal server error");

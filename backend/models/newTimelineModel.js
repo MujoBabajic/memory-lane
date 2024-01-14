@@ -10,7 +10,8 @@ async function createTimeline(userData) {
       isPrivate.toLowerCase() === "false" ? false : Boolean(isPrivate);
 
     await db.execute(
-      `INSERT INTO timelines (user_id, title, is_private) VALUES (?, ?, ?)`,
+      `INSERT INTO timelines (user_id, title, is_private) 
+      VALUES (?, ?, ?)`,
       [userID, title, isPrivateBoolean]
     );
   } catch (err) {

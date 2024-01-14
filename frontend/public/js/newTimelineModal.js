@@ -1,25 +1,13 @@
-//CREATE TIMELINE MODAL
+const newTimelineModal = document.querySelector("#new-timeline-modal");
+const newMemoryButton = document.querySelector("#new-timeline-button");
+const closeNewTimelineModalButton = document.querySelector(
+  "#close-new-timeline-modal"
+);
 
-const newTimelineModal = document.getElementById("new-timeline-modal");
-
-const newMemoryButton = document.getElementById("new-timeline-button");
-
-const span = document.getElementsByClassName("close")[0];
-
-newMemoryButton.onclick = function () {
+newMemoryButton.addEventListener("click", () => {
   newTimelineModal.style.display = "block";
-};
+});
 
-span.onclick = function () {
+closeNewTimelineModalButton.addEventListener("click", () => {
   newTimelineModal.style.display = "none";
-};
-
-window.onclick = function (event) {
-  if (event.target == newTimelineModal) {
-    newTimelineModal.style.display = "none";
-  } else if (event.target == document.querySelector("#edit-timeline-modal")) {
-    document.getElementById("edit-timeline-modal").style.display = "none";
-  } else if (event.target == document.querySelector("#remove-timeline-modal")) {
-    document.getElementById("remove-timeline-modal").style.display = "none";
-  }
-};
+});

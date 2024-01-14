@@ -3,7 +3,9 @@ const db = require("./dbConnection");
 async function getMemoriesForTimeline(timelineId) {
   try {
     const timelineData = await db.execute(
-      `SELECT * FROM memories where timeline_id = ?`,
+      `SELECT * FROM memories 
+      WHERE timeline_id = ?
+      ORDER BY created_at DESC`,
       [timelineId]
     );
 
@@ -16,7 +18,8 @@ async function getMemoriesForTimeline(timelineId) {
 async function getTimelineStyleData(timelineId) {
   try {
     const timelineStyleData = await db.execute(
-      `SELECT * FROM timelines where timeline_id = ?`,
+      `SELECT * FROM timelines 
+      WHERE timeline_id = ?`,
       [timelineId]
     );
     return timelineStyleData;

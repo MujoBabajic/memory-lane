@@ -281,20 +281,20 @@
       memoriesContainer.style.fontFamily = text_font;
       const privateStatus = "<%= timelineStyles[0][0].is_private %>";
 
-      window.onclick = function (event) {
-        if (event.target == document.getElementById("new-memory-modal")) {
-          document.getElementById("new-memory-modal").style.display = "none";
+      window.addEventListener("click", (event) => {
+        if (event.target == document.querySelector("#new-memory-modal")) {
+          document.querySelector("#new-memory-modal").style.display = "none";
         } else if (
           event.target == document.querySelector("#edit-timeline-modal")
         ) {
-          document.getElementById("edit-timeline-modal").style.display = "none";
+          document.querySelector("#edit-timeline-modal").style.display = "none";
         } else if (
           event.target == document.querySelector("#remove-timeline-modal")
         ) {
-          document.getElementById("remove-timeline-modal").style.display =
+          document.querySelector("#remove-timeline-modal").style.display =
             "none";
         }
-      };
+      });
     </script>
   </body>
 </html>

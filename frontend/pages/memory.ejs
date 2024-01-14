@@ -161,15 +161,15 @@
       main.style.backgroundColor = bgColor;
       memoriesContainer.style.fontFamily = text_font;
 
-      window.onclick = function (event) {
-        if (event.target == document.getElementById("edit-memory-modal")) {
-          document.getElementById("edit-memory-modal").style.display = "none";
+      window.addEventListener("click", (event) => {
+        if (event.target == document.querySelector("#edit-memory-modal")) {
+          document.querySelector("#edit-memory-modal").style.display = "none";
         } else if (
           event.target == document.querySelector("#remove-memory-modal")
         ) {
-          document.getElementById("remove-memory-modal").style.display = "none";
+          document.querySelector("#remove-memory-modal").style.display = "none";
         }
-      };
+      });
     </script>
   </body>
 </html>

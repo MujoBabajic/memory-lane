@@ -1,6 +1,4 @@
-//PROFILE NAV DROPDOWN
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const profileNavButton = document.querySelector(".profile-nav-button");
 
   profileNavButton.addEventListener("click", function () {

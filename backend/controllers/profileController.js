@@ -13,11 +13,13 @@ function checkIsOwnProfile(token, userId) {
 }
 
 async function getTimelines(req, res) {
-  const { userId } = req.params;
   try {
+    const { userId } = req.params;
+
     const timelinesData = await timelineModel.getTimelinesForUser(userId);
     const userData = await timelineModel.getUserById(userId);
     const isOwnProfile = checkIsOwnProfile(req.cookies.jwt, userId);
+
     res.render("profile", { timelinesData, userData, isOwnProfile });
   } catch (err) {
     console.log(err);

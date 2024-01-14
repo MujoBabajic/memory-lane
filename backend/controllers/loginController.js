@@ -7,18 +7,15 @@ const jwt = require("jsonwebtoken");
 async function loginUser(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res
-      .status(422)
-      .render("login", {
-        errors: errors.mapped(),
-        credentialsError: false,
-        userNotFound: false,
-      });
+    return res.status(422).render("login", {
+      errors: errors.mapped(),
+      credentialsError: false,
+      userNotFound: false,
+    });
   }
 
-  const { email, password } = req.body;
-
   try {
+    const { email, password } = req.body;
     const userData = await loginModel.getUserByEmail(email);
 
     if (!userData || userData.length === 0) {
@@ -49,6 +46,7 @@ async function loginUser(req, res) {
         secure: true,
         maxAge: 24 * 60 * 60 * 1000,
       });
+
       res.redirect("/feed");
     } else {
       return res.status(400).render("login", {

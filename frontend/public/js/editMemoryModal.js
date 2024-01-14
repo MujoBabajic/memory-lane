@@ -1,15 +1,12 @@
-//EDIT MEMORY MODAL
-
-const editMemoryModal = document.getElementById("edit-memory-modal");
-
-const editMemoryButton = document.getElementById("edit-memory-button");
+const editMemoryModal = document.querySelector("#edit-memory-modal");
+const editMemoryButton = document.querySelector("#edit-memory-button");
 const closeEditMemoryModalButton = document.querySelector(
   "#close-edit-memory-modal"
 );
 
-editMemoryButton.onclick = function () {
+editMemoryButton.addEventListener("click", () => {
   editMemoryModal.style.display = "block";
-};
+});
 
 closeEditMemoryModalButton.addEventListener("click", () => {
   editMemoryModal.style.display = "none";

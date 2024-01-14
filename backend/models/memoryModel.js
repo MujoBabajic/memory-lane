@@ -3,7 +3,8 @@ const db = require("./dbConnection");
 async function getMemoryById(memoryId) {
   try {
     const memory = await db.query(
-      "SELECT * FROM memories WHERE memory_id = ?",
+      `SELECT * FROM memories 
+      WHERE memory_id = ?`,
       [memoryId]
     );
 

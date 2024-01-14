@@ -15,6 +15,7 @@ function createNewTimeline(req, res) {
             isPrivate: req.body.isPrivate,
             email: email,
           });
+
           res.status(201).redirect(`/profile/${decodedToken.userId}`);
         } catch (err) {
           console.log(err);

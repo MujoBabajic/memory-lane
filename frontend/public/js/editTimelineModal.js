@@ -1,20 +1,12 @@
-//EDIT TIMELINE MODAL
-
-const editTimelineModal = document.getElementById("edit-timeline-modal");
-const editTimelineButton = document.getElementById("edit-timeline-button");
+const editTimelineModal = document.querySelector("#edit-timeline-modal");
+const editTimelineButton = document.querySelector("#edit-timeline-button");
 const closeEditTimelineModalButton = document.querySelector(
   "#close-edit-timeline-modal"
 );
 
-editTimelineButton.onclick = function () {
+editTimelineButton.addEventListener("click", () => {
   editTimelineModal.style.display = "block";
-};
-
-window.onclick = function () {
-  if (event.target == editTimelineModal) {
-    editTimelineModal.style.display = "none";
-  }
-};
+});
 
 closeEditTimelineModalButton.addEventListener("click", () => {
   editTimelineModal.style.display = "none";

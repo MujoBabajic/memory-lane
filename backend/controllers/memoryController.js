@@ -22,6 +22,7 @@ async function getMemoryById(req, res) {
       req.cookies.jwt,
       timelineStyles[0][0].user_id
     );
+
     res.render("memory", { memory, timelineStyles, userData, isOwnProfile });
   } catch (error) {
     console.error(error);
