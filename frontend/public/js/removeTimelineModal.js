@@ -4,14 +4,12 @@ const removeTimelineModal = document.getElementById("remove-timeline-modal");
 
 const removeTimelineButton = document.getElementById("remove-timeline-button");
 
-const span = document.getElementsByClassName("close")[0];
+const closeRemoveTimelineModal = document.querySelector(
+  "#close-remove-timeline-modal"
+);
 
 removeTimelineButton.onclick = function () {
   removeTimelineModal.style.display = "block";
-};
-
-span.onclick = function () {
-  removeTimelineModal.style.display = "none";
 };
 
 window.onclick = function (event) {
@@ -19,3 +17,7 @@ window.onclick = function (event) {
     removeTimelineModal.style.display = "none";
   }
 };
+
+closeRemoveTimelineModal.addEventListener("click", () => {
+  removeTimelineModal.style.display = "none";
+});

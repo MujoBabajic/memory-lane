@@ -76,9 +76,9 @@
           </div>
           <%}%> <% if(isOwnProfile) {%>
           <div class="timeline-crud-buttons">
-            <button id="new-memory-button">+ New Memory</button>
-            <button id="remove-timeline-button">x Delete Timeline</button>
-            <button id="edit-timeline-button">? Edit Timeline</button>
+            <button id="new-memory-button">New Memory</button>
+            <button id="remove-timeline-button">Delete Timeline</button>
+            <button id="edit-timeline-button">Edit Timeline</button>
           </div>
           <% }%>
         </div>
@@ -109,20 +109,33 @@
       <div class="modal" id="remove-timeline-modal">
         <div class="modal-content">
           <div class="modal-header">
-            <span class="close">&times;</span>
+            <span id="close-remove-timeline-modal" class="close">&times;</span>
             <h2>Remove Timeline</h2>
           </div>
           <br />
+          <br />
           <form action="/deletetimeline" method="POST">
-            <h3>Confirm timeline deletion</h3>
+            <h4 style="text-align: center">
+              Are you sure you want to delete this timeline?
+            </h4>
             <input
               hidden
               type="text"
               name="timelineId"
               value="<%= timelineId %>"
             />
+            <input
+              hidden
+              type="text"
+              name="userId"
+              value="<%= user[0].user_id %>"
+            />
+            <br />
+            <br />
             <div class="confirmation buttons-container">
-              <button id="yes-confirmation-button">Yes</button>
+              <button id="yes-confirmation-button" class="modal-submit-button">
+                Confirm
+              </button>
             </div>
           </form>
         </div>
@@ -131,7 +144,7 @@
       <div class="modal" id="new-memory-modal">
         <div class="modal-content">
           <div class="modal-header">
-            <span class="close">&times;</span>
+            <span id="close-new-memory-modal" class="close">&times;</span>
             <h2>Add New Memory</h2>
           </div>
           <br />
@@ -161,7 +174,7 @@
             <br /><br />
 
             <button
-              class="add-memory-modal-button"
+              class="add-memory-modal-button modal-submit-button"
               id="add-memory-modal-button"
             >
               Add Memory
@@ -173,19 +186,26 @@
       <div class="modal" id="edit-timeline-modal">
         <div class="modal-content">
           <div class="modal-header">
-            <span class="close">&times;</span>
+            <span id="close-edit-timeline-modal" class="close">&times;</span>
             <h2>Edit Timeline</h2>
           </div>
           <br />
           <form id="edit-timeline-form" action="/edittimeline" method="POST">
             <label for="edit-timeline-title">Timeline name: </label>
-            <input type="text" id="edit-timeline-title" name="title" required />
+            <input
+              type="text"
+              id="edit-timeline-title"
+              name="title"
+              placeholder="<%=timelineStyles[0][0].title%>"
+            />
             <br />
+
             <label for="edit-timeline-privacy">Private timeline: </label>
             <select name="isPrivate" id="edit-timeline-privacy">
               <option value="false">No</option>
               <option value="true">Yes</option>
             </select>
+
             <br />
             <label for="edit-timeline-font">Timeline font: </label>
             <select name="textFont" id="edit-timeline-font">
@@ -238,7 +258,7 @@
             <br /><br />
 
             <button
-              class="edit-timeline-modal-button"
+              class="edit-timeline-modal-button modal-submit-button"
               id="edit-timeline-modal-button"
             >
               Edit Timeline
@@ -251,6 +271,7 @@
     <script src="/js/removeTimelineModal.js"></script>
     <script src="/js/newMemoryModal.js"></script>
     <script src="/js/editTimelineModal.js"></script>
+    <script src="/js/adjustEditTimelineModalValues.js"></script>
     <script>
       const main = document.querySelector("main");
       const memoriesContainer = document.querySelector(".memories-container");
@@ -258,6 +279,22 @@
       const text_font = "<%= timelineStyles[0][0].text_font %>";
       main.style.backgroundColor = bgColor;
       memoriesContainer.style.fontFamily = text_font;
+      const privateStatus = "<%= timelineStyles[0][0].is_private %>";
+
+      window.onclick = function (event) {
+        if (event.target == document.getElementById("new-memory-modal")) {
+          document.getElementById("new-memory-modal").style.display = "none";
+        } else if (
+          event.target == document.querySelector("#edit-timeline-modal")
+        ) {
+          document.getElementById("edit-timeline-modal").style.display = "none";
+        } else if (
+          event.target == document.querySelector("#remove-timeline-modal")
+        ) {
+          document.getElementById("remove-timeline-modal").style.display =
+            "none";
+        }
+      };
     </script>
   </body>
 </html>

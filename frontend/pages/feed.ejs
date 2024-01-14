@@ -51,9 +51,11 @@
               <img src="/images/default_profile_img.jpg" alt="" />
             </a>
             <%}%>
-            <p class="post-username">
-              <%= `${memory.first_name} ${memory.last_name}` %>
-            </p>
+            <a href="/profile/<%= memory.user_id %>">
+              <p class="post-username">
+                <%= `${memory.first_name} ${memory.last_name}` %>
+              </p>
+            </a>
           </div>
           <div class="post-picture">
             <a href="/memory/<%=memory.memory_id%>">
@@ -75,7 +77,7 @@
       <div class="pagination">
         <% if (currentPage > 1) { %>
         <a href="/feed?page=<%= currentPage - 1 %>" class="pagination-button"
-          >Previous</a
+          >&lt;</a
         >
         <% } %>
 
@@ -83,7 +85,7 @@
 
         <% if (publicMemories[0].length === 10) { %>
         <a href="/feed?page=<%= currentPage + 1 %>" class="pagination-button"
-          >Next</a
+          >&gt;</a
         >
         <% } %>
       </div>

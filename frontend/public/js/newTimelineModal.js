@@ -17,5 +17,9 @@ span.onclick = function () {
 window.onclick = function (event) {
   if (event.target == newTimelineModal) {
     newTimelineModal.style.display = "none";
+  } else if (event.target == document.querySelector("#edit-timeline-modal")) {
+    document.getElementById("edit-timeline-modal").style.display = "none";
+  } else if (event.target == document.querySelector("#remove-timeline-modal")) {
+    document.getElementById("remove-timeline-modal").style.display = "none";
   }
 };

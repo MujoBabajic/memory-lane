@@ -58,8 +58,8 @@
       <section class="memories-container">
         <% if(isOwnProfile) {%>
         <div class="current-memory-container">
-          <button id="remove-memory-button">x Delete Memory</button>
-          <button id="edit-memory-button">? Edit Memory</button>
+          <button id="remove-memory-button">Delete Memory</button>
+          <button id="edit-memory-button">Edit Memory</button>
         </div>
         <%}%> <% if(timelineStyles[0][0].is_private && !isOwnProfile){%>
         <div class="memory">This memory is from a private timeline</div>
@@ -84,12 +84,15 @@
       <div class="modal" id="remove-memory-modal">
         <div class="modal-content">
           <div class="modal-header">
-            <span class="close">&times;</span>
+            <span id="close-remove-memory-modal" class="close">&times;</span>
             <h2>Remove Memory</h2>
           </div>
           <br />
+          <br />
           <form action="/deletememory" method="POST">
-            <h3>Confirm memory deletion</h3>
+            <h4 style="text-align: center">
+              Are you sure you want to remove this memory?
+            </h4>
             <input
               hidden
               type="text"
@@ -102,8 +105,12 @@
               name="timelineId"
               value="<%= memory[0][0].timeline_id %>"
             />
+            <br />
+            <br />
             <div class="confirmation buttons-container">
-              <button id="yes-confirmation-button">Yes</button>
+              <button id="yes-confirmation-button" class="modal-submit-button">
+                Confirm
+              </button>
             </div>
           </form>
         </div>
@@ -112,7 +119,7 @@
       <div class="modal" id="edit-memory-modal">
         <div class="modal-content">
           <div class="modal-header">
-            <span class="close">&times;</span>
+            <span id="close-edit-memory-modal" class="close">&times;</span>
             <h2>Edit Memory</h2>
           </div>
           <br />
@@ -131,10 +138,10 @@
               value="<%= memory[0][0].memory_id %>"
             />
             <br />
-            <br /><br />
+            <br />
 
             <button
-              class="edit-memory-modal-button"
+              class="edit-memory-modal-button modal-submit-button"
               id="edit-memory-modal-button"
             >
               Edit Memory
@@ -153,6 +160,16 @@
       const text_font = "<%= timelineStyles[0][0].text_font %>";
       main.style.backgroundColor = bgColor;
       memoriesContainer.style.fontFamily = text_font;
+
+      window.onclick = function (event) {
+        if (event.target == document.getElementById("edit-memory-modal")) {
+          document.getElementById("edit-memory-modal").style.display = "none";
+        } else if (
+          event.target == document.querySelector("#remove-memory-modal")
+        ) {
+          document.getElementById("remove-memory-modal").style.display = "none";
+        }
+      };
     </script>
   </body>
 </html>

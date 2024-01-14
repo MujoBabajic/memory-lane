@@ -55,7 +55,7 @@
       <br />
       <div class="new-timeline-button-container">
         <% if (isOwnProfile) { %>
-        <button id="new-timeline-button">+ New Timeline</button>
+        <button id="new-timeline-button">New Timeline</button>
         <% } %>
       </div>
       <% if (timelinesData[0].length>0) { %>
@@ -82,15 +82,16 @@
             action="/createnewtimeline"
             method="POST"
           >
-            <label for="new-timeline-name">Timeline Name:</label>
+            <label for="new-timeline-name">Timeline name:</label>
             <input type="text" id="new-timeline-name" name="title" required />
-            <label for="new-timeline-private-toggle">Private:</label>
+            <br />
+            <label for="new-timeline-private-toggle">Private timeline:</label>
             <select id="new-timeline-private-toggle" name="isPrivate">
               <option value="false">No</option>
               <option value="true">Yes</option></select
             ><br /><br />
 
-            <button class="add-timeline-modal-button">Add Timeline</button>
+            <button class="modal-submit-button">Add Timeline</button>
           </form>
         </div>
       </div>

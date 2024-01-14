@@ -4,18 +4,14 @@ const removeMemoryModal = document.getElementById("remove-memory-modal");
 
 const removeMemoryButton = document.getElementById("remove-memory-button");
 
-const span = document.getElementsByClassName("close")[0];
+const closeRemoveMemoryModalButton = document.querySelector(
+  "#close-remove-memory-modal"
+);
 
 removeMemoryButton.onclick = function () {
   removeMemoryModal.style.display = "block";
 };
 
-span.onclick = function () {
+closeRemoveMemoryModalButton.addEventListener("click", () => {
   removeMemoryModal.style.display = "none";
-};
-
-window.onclick = function (event) {
-  if (event.target == removeMemoryModal) {
-    removeMemoryModal.style.display = "none";
-  }
-};
+});

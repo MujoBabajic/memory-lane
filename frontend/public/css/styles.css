@@ -67,10 +67,12 @@ nav {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  transition: 0.2s;
 }
 
 .profile-nav-button img:hover {
   opacity: 0.7;
+  transition: 0.2s;
 }
 
 .dropdown-content {
@@ -155,11 +157,13 @@ form a {
   font-size: 16px;
   font-weight: bold;
   margin-top: 30px;
+  transition: 0.2s;
 }
 
 #login-button:hover,
 #sign-up-button:hover {
   background-color: #fed35c;
+  transition: 0.2s;
 }
 
 #form-bottom-message {
@@ -244,18 +248,22 @@ form a {
 #edit-profile-button {
   padding: 10px;
   cursor: pointer;
-  border: none;
+  transition: 0.2s;
+
   border-radius: 5px;
-  background-color: #bbbbbb;
+  background-color: rgb(240, 240, 240);
 }
 
 #edit-profile-button:hover {
-  background-color: #a3a3a3;
+  background-color: #bbbbbb;
+  transition: 0.2s;
 }
 
 .new-timeline-button-container {
   width: 100%;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 #new-timeline-button,
@@ -268,6 +276,7 @@ form a {
   cursor: pointer;
   border-radius: 5px;
   outline: none;
+  transition: 0.2s;
 }
 
 #new-timeline-button:hover,
@@ -277,6 +286,7 @@ form a {
 #edit-memory-button:hover,
 #remove-memory-button:hover {
   background-color: #bbbbbb;
+  transition: 0.2s;
 }
 
 .timeline-select-container,
@@ -328,9 +338,13 @@ hr {
   align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
+  transition: 0.2s;
+
+  align-self: flex-start;
 }
 
 .timeline-item:hover {
+  transition: 0.2s;
   background-color: rgba(161, 159, 159, 0.3);
   cursor: pointer;
 }
@@ -354,9 +368,8 @@ hr {
   align-items: center;
 }
 
-/* CREATE TIMELINE MODAL*/
+/* MODALS */
 
-/* Modal styles */
 .modal {
   display: none;
   position: fixed;
@@ -365,7 +378,6 @@ hr {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -377,11 +389,65 @@ hr {
   width: 400px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+}
+
+.modal-header {
+  width: 100%;
+}
+
+.modal-content form {
+  width: 100%;
+}
+
+.modal-content form label {
+  margin-bottom: 10px;
+}
+
+.modal-content form label,
+.modal-content form input {
+  width: 100%;
+}
+
+.modal-content form input {
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  outline: none;
+}
+
+.modal-content form input[type="file"] {
+  border: none;
+}
+
+.modal-content form select {
+  padding: 5px;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 5px;
+  outline: none;
 }
 
 #timelineName {
   width: 50%;
 }
+
+.modal-submit-button {
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--main-color);
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.modal-submit-button:hover {
+  background-color: #e1bc55;
+  transition: 0.2s;
+}
+
 .add-timeline-modal-button {
   padding: 5px;
   cursor: pointer;
@@ -475,10 +541,29 @@ hr {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  transition: 0.2s;
+}
+
+.post-heading img:hover {
+  transition: 0.2s;
+  opacity: 0.7;
+}
+
+.post-heading a {
+  text-decoration: none;
+  color: black;
+}
+
+.post-heading a:visited {
+  color: black;
 }
 
 .post-heading p {
   margin-left: 10px;
+}
+
+.post-heading p:hover {
+  text-decoration: underline;
 }
 
 .post-heading {
@@ -537,8 +622,9 @@ hr {
 }
 
 .pagination-button {
-  background-color: #d8d8d8;
+  background-color: var(--main-color);
   color: black;
+  transition: 0.2s;
 }
 
 .pagination-button:visited {
@@ -546,7 +632,8 @@ hr {
 }
 
 .pagination-button:hover {
-  background-color: #bbbbbb;
+  background-color: #e1bc55;
+  transition: 0.2s;
 }
 
 .pagination-button,
