@@ -84,14 +84,12 @@
           <% }%>
         </div>
         <% if(timelineStyles[0][0].is_private && !isOwnProfile) {%>
-        <div class="memories-container">
-          You cannot view this private timeline
-        </div>
-        <%} else {%>
 
-        <div class="memories-container">
-          <% if (memories[0].length > 0) { %> <% memories[0].forEach(memory => {
-          %>
+        <p>You cannot view this private timeline</p>
+
+        <%} else {%> <% if (memories[0].length > 0) { %>
+        <div class="memories-select-container">
+          <% memories[0].forEach(memory => { %>
           <a href="/memory/<%=memory.memory_id %>">
             <div
               class="memory-item"
@@ -100,11 +98,11 @@
               "
             ></div>
           </a>
-          <% }); %> <% } else { %>
-          <p>No memories found for this timeline.</p>
-          <% } %>
+          <% }); %>
         </div>
-        <%}%>
+        <% } else { %>
+        <p>No memories found for this timeline.</p>
+        <% } %> <%}%>
       </section>
 
       <div class="modal" id="remove-timeline-modal">

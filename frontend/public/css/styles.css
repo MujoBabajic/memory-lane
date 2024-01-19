@@ -289,12 +289,20 @@ form a {
   transition: 0.2s;
 }
 
-.timeline-select-container,
 .memories-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.timeline-select-container,
+.memories-select-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .memories-container a,
