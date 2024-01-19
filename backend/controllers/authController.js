@@ -1,8 +1,8 @@
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
-const loginModel = require("../models/loginModel");
-require("dotenv").config();
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const authModel = require("../models/authModel");
 
 async function loginUser(req, res) {
   const errors = validationResult(req);
@@ -16,7 +16,7 @@ async function loginUser(req, res) {
 
   try {
     const { email, password } = req.body;
-    const userData = await loginModel.getUserByEmail(email);
+    const userData = await authModel.getUserByEmail(email);
 
     if (!userData || userData.length === 0) {
       return res.status(400).render("login", {
@@ -61,6 +61,46 @@ async function loginUser(req, res) {
   }
 }
 
-module.exports = {
-  loginUser,
-};
+function logoutUser(req, res) {
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.redirect("/");
+}
+
+async function registerUser(req, res) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res
+      .status(422)
+      .render("registration", { errors: errors.mapped(), emailExists: false });
+  }
+
+  const { firstname, lastname, dob, gender, email, password } = req.body;
+
+  try {
+    const emailExists = await authModel.checkIfEmailExists(email);
+
+    if (emailExists) {
+      return res
+        .status(409)
+        .render("registration", { errors: "", emailExists });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await authModel.createUser({
+      firstName: firstname,
+      lastName: lastname,
+      dob: dob,
+      gender: gender,
+      email: email,
+      hashedPassword: hashedPassword,
+    });
+
+    res.status(200).render("registrationSuccess");
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send("Internal server error");
+  }
+}
+
+module.exports = { loginUser, logoutUser, registerUser };

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const profileController = require("../controllers/profileController");
+const timelinesController = require("../controllers/timelinesController");
 
-router.get("/:userId", profileController.getTimelines);
+router.get("/:userId", timelinesController.getTimelines);
 
 module.exports = router;

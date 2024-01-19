@@ -115,7 +115,7 @@
           </div>
           <br />
           <br />
-          <form action="/deletetimeline" method="POST">
+          <form action="/timeline/deletetimeline" method="POST">
             <h4 style="text-align: center">
               Are you sure you want to delete this timeline?
             </h4>
@@ -151,7 +151,7 @@
           <br />
           <form
             id="new-memory-form"
-            action="/createnewmemory"
+            action="/memory/creatememory"
             method="POST"
             enctype="multipart/form-data"
           >
@@ -191,7 +191,11 @@
             <h2>Edit Timeline</h2>
           </div>
           <br />
-          <form id="edit-timeline-form" action="/edittimeline" method="POST">
+          <form
+            id="edit-timeline-form"
+            action="/timeline/edittimeline"
+            method="POST"
+          >
             <label for="edit-timeline-title">Timeline name: </label>
             <input
               type="text"

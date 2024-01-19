@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const loginModel = require("../models/loginModel");
+const authModel = require("../models/authModel");
 require("dotenv").config();
 
 const authenticateToken = (req, res, next) => {
@@ -31,7 +31,7 @@ const checkUser = (req, res, next) => {
           next();
         } else {
           try {
-            let user = await loginModel.getUserByEmail(decodedToken.userEmail);
+            let user = await authModel.getUserByEmail(decodedToken.userEmail);
             res.locals.user = user;
             next();
           } catch (err) {

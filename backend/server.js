@@ -5,20 +5,11 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const authenticateToken = require("./middleware/jwtauth");
 
-const loginRoute = require("./routes/loginRoute");
-const registrationRoute = require("./routes/registrationRoute");
-const logoutRoute = require("./routes/logoutRoute");
-const newTimelineRoute = require("./routes/newTimelineRoute");
-const newMemoryRoute = require("./routes/newMemoryRoute");
-const editTimelineRoute = require("./routes/editTimelineRoute");
-const deleteTimelineRoute = require("./routes/deleteTimelineRoute");
-const editMemoryRoute = require("./routes/editMemoryRoute");
-const deleteMemoryRoute = require("./routes/deleteMemoryRoute");
-const profileRoute = require("./routes/profileRoute");
-const timelineRoute = require("./routes/timelineRoute");
-const memoryRoute = require("./routes/memoryRoute");
+const authRoute = require("./routes/authRoute");
 const feedRoute = require("./routes/feedRoute");
-const { time } = require("console");
+const profileRoute = require("./routes/profileRoute");
+const timelinesRoute = require("./routes/timelinesRoute");
+const memoriesRoute = require("./routes/memoriesRoute");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../frontend/pages"));
@@ -35,17 +26,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/login", loginRoute);
-app.use("/register", registrationRoute);
-app.use("/logout", logoutRoute);
-app.use("/createnewtimeline", newTimelineRoute);
-app.use("/createnewmemory", newMemoryRoute);
-app.use("/edittimeline", editTimelineRoute);
-app.use("/deletetimeline", deleteTimelineRoute);
-app.use("/editmemory", editMemoryRoute);
-app.use("/deletememory", deleteMemoryRoute);
-
 app.get("*", authenticateToken.checkUser);
+
+app.use("/", authRoute);
+app.use("/feed", authenticateToken.authenticateToken, feedRoute);
+app.use("/profile", profileRoute);
+app.use("/timeline", timelinesRoute);
+app.use("/memory", memoriesRoute);
+
 app.get("/", (req, res) => {
   if (res.locals.user) res.redirect("/feed");
   else
@@ -55,19 +43,16 @@ app.get("/", (req, res) => {
       userNotFound: false,
     });
 });
+
 app.get("/register-page", (req, res) => {
   if (res.locals.user) res.redirect("/feed");
   else res.render("registration", { errors: "", emailExists: false });
 });
-app.use("/feed", authenticateToken.authenticateToken, feedRoute);
-app.use("/profile", profileRoute);
 
 app.get("/editprofile", (req, res) => {
   if (res.locals.user) res.render("edit_profile");
   else res.sendStatus(401);
 });
-app.use("/timeline", timelineRoute);
-app.use("/memory", memoryRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
