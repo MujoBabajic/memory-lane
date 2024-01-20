@@ -32,24 +32,48 @@
     <main>
       <section class="user-info-container">
         <div class="profile-picture-container">
-          <% if(userData[0].profile_picture) {%>
+          <% if (userData[0].profile_picture) { %> <% if (isOwnProfile) { %>
+          <div class="image-container">
+            <img
+              src="data:image/jpeg;base64,<%= Buffer.from(userData[0].profile_picture)%>"
+              alt="Profile Image"
+              class="editable-pfp"
+              id="open-change-avatar-modal"
+            />
+            <div id="hover-text-msg" class="hover-text" style="display: none">
+              Change<br />Avatar
+            </div>
+          </div>
+          <% } else { %>
           <img
             src="data:image/jpeg;base64,<%= Buffer.from(userData[0].profile_picture)%>"
             alt="Profile Image"
           />
-          <% }else{ %>
+          <% } %> <% } else { %> <% if (isOwnProfile) { %>
+          <div class="image-container">
+            <img
+              src="/images/default_profile_img.jpg"
+              alt="Profile Image"
+              class="editable-pfp"
+              id="open-change-avatar-modal"
+            />
+            <div id="hover-text-msg" class="hover-text" style="display: none">
+              Change<br />Avatar
+            </div>
+          </div>
+          <% } else { %>
           <img src="/images/default_profile_img.jpg" alt="Profile Image" />
-          <% }%>
+          <% } %> <% } %>
         </div>
         <div class="username-and-edit-button-container">
           <div id="profile-user-name">
             <%= `${userData[0].first_name} ${userData[0].last_name}` %>
           </div>
-          <% if(isOwnProfile) {%>
-          <a href="/editprofile"
-            ><button id="edit-profile-button">Edit profile</button></a
-          >
-          <% }%>
+          <% if (isOwnProfile) { %>
+          <a href="/editprofile">
+            <button id="edit-profile-button">Edit profile</button>
+          </a>
+          <% } %>
         </div>
       </section>
       <br />
@@ -150,10 +174,45 @@
           </form>
         </div>
       </div>
+
+      <div class="modal" id="change-avatar-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span id="close-change-avatar-modal" class="close">&times;</span>
+            <h2>Change Avatar</h2>
+          </div>
+          <br />
+          <form
+            id="change-avatar-form"
+            action="/profile/changeavatar"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <label for="change-avatar-picture">Upload your picture:</label>
+            <input
+              type="file"
+              accept="image/*"
+              id="change-avatar-picture"
+              name="picture"
+              required
+            />
+            <input hidden type="text" name="timelineId" value="" />
+            <br /><br />
+
+            <button
+              class="change-avatar-modal-button modal-submit-button"
+              id="change-avatar-modal-button"
+            >
+              Add Memory
+            </button>
+          </form>
+        </div>
+      </div>
     </main>
     <script src="/js/navDropdown.js"></script>
     <script src="/js/editMemoryModal.js"></script>
     <script src="/js/removeMemoryModal.js"></script>
+    <script src="/js/changeAvatarModal.js"></script>
     <script>
       const main = document.querySelector("main");
       const memoriesContainer = document.querySelector(".memories-container");

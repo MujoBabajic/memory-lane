@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const timelinesController = require("../controllers/timelinesController");
+const profileController = require("../controllers/profileController");
 
 router.get("/:userId", timelinesController.getTimelines);
+router.post("/changeavatar", profileController.changeAvatar);
 
 module.exports = router;

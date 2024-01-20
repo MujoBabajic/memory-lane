@@ -652,3 +652,29 @@ hr {
   padding: 10px;
   border-radius: 5px;
 }
+
+.editable-pfp {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.editable-pfp:hover {
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-text {
+  position: absolute;
+  top: 50%;
+  left: 43%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+  user-select: none;
+}
