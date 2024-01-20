@@ -14,25 +14,7 @@
     <link rel="icon" href="/images/favicon_logo.png" />
   </head>
   <body>
-    <header>
-      <a href="/feed" class="header-logo">Memory Lane</a>
-      <nav>
-        <div class="profile-nav-button">
-          <% if(user[0].profile_picture) {%>
-          <img
-            src="data:image/jpeg;base64,<%= Buffer.from(user[0].profile_picture)%>"
-            alt="Profile Image"
-          />
-          <% }else{ %>
-          <img src="/images/default_profile_img.jpg" alt="" />
-          <% }%>
-          <div class="dropdown-content">
-            <a href="/profile/<%=user[0].user_id %>">Profile</a>
-            <a href="/logout">Log Out</a>
-          </div>
-        </div>
-      </nav>
-    </header>
+    <%- include('./partials/header.ejs') %>
 
     <main>
       <% if (publicMemories[0].length > 0) { %>
