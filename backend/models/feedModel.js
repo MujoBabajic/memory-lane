@@ -11,14 +11,14 @@ async function getPublicMemories(page, limit) {
     INNER JOIN timelines t ON m.timeline_id = t.timeline_id
     INNER JOIN users u ON t.user_id = u.user_id
     WHERE t.is_private = 0
-    ORDER BY m.created_at DESC
+    ORDER BY m.memory_created_at DESC
     LIMIT ${offset}, ${limit};
     `
     );
 
     data[0].forEach((memory) => {
-      const createdAt = new Date(memory.created_at);
-      const editedAt = new Date(memory.last_edit_at);
+      const createdAt = new Date(memory.memory_created_at);
+      const editedAt = new Date(memory.memory_last_edit_at);
       const dateCreatedFormatted = `${createdAt.getDate()}/${
         createdAt.getMonth() + 1
       }/${createdAt.getFullYear()}`;
@@ -26,8 +26,8 @@ async function getPublicMemories(page, limit) {
       const dateEditedFormatted = `${editedAt.getDate()}/${
         editedAt.getMonth() + 1
       }/${editedAt.getFullYear()}`;
-      memory.created_at = dateCreatedFormatted;
-      memory.last_edit_at = dateEditedFormatted;
+      memory.memory_created_at = dateCreatedFormatted;
+      memory.memory_last_edit_at = dateEditedFormatted;
     });
 
     return data;

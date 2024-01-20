@@ -44,8 +44,8 @@ async function getMemoryById(memoryId) {
       [memoryId]
     );
 
-    const createdAt = new Date(memory[0][0].created_at);
-    const editedAt = new Date(memory[0][0].last_edit_at);
+    const createdAt = new Date(memory[0][0].memory_created_at);
+    const editedAt = new Date(memory[0][0].memory_last_edit_at);
     const dateCreatedFormatted = `${createdAt.getDate()}/${
       createdAt.getMonth() + 1
     }/${createdAt.getFullYear()}`;
@@ -53,8 +53,8 @@ async function getMemoryById(memoryId) {
     const dateEditedFormatted = `${editedAt.getDate()}/${
       editedAt.getMonth() + 1
     }/${editedAt.getFullYear()}`;
-    memory[0][0].created_at = dateCreatedFormatted;
-    memory[0][0].last_edit_at = dateEditedFormatted;
+    memory[0][0].memory_created_at = dateCreatedFormatted;
+    memory[0][0].memory_last_edit_at = dateEditedFormatted;
     return memory;
   } catch (err) {
     console.log(err);

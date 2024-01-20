@@ -17,8 +17,8 @@ CREATE TABLE timelines (
     user_id INT,
     title VARCHAR(20) NOT NULL,
     is_private BOOLEAN NOT NULL DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    last_edit_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    timeline_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    timeline_last_edit_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	text_font VARCHAR(50) DEFAULT 'Arial',
     bg_color VARCHAR(20),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
@@ -27,8 +27,8 @@ CREATE TABLE timelines (
 CREATE TABLE memories (
     memory_id INT AUTO_INCREMENT PRIMARY KEY,
     timeline_id INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    last_edit_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    memory_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    memory_last_edit_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     memory_description VARCHAR(255),
     picture LONGBLOB,
     FOREIGN KEY (timeline_id) REFERENCES timelines(timeline_id) ON DELETE CASCADE
@@ -49,7 +49,7 @@ FOR EACH ROW
 BEGIN
     IF NEW.memory_description <=> OLD.memory_description
         OR NEW.picture <=> OLD.picture THEN
-        SET NEW.last_edit_at = CURRENT_TIMESTAMP;
+        SET NEW.memory_last_edit_at = CURRENT_TIMESTAMP;
     END IF;
 END;
 //
@@ -64,20 +64,8 @@ BEGIN
         OR NEW.is_private <=> OLD.is_private
         OR NEW.text_font <=> OLD.text_font 
         OR NEW.bg_color <=> OLD.bg_color THEN
-        SET NEW.last_edit_at = CURRENT_TIMESTAMP;
+        SET NEW.timeline_last_edit_at = CURRENT_TIMESTAMP;
     END IF;
 END;
 //
 DELIMITER ;
-
-
-
-
-/*
-CREATE TABLE memories_pictures (
-	picture_id INT AUTO_INCREMENT PRIMARY KEY,
-    memory_id INT,
-    picture LONGBLOB,
-    FOREIGN KEY (memory_id) REFERENCES memories (memory_id)
-);
-*/
