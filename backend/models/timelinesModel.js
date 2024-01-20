@@ -112,7 +112,7 @@ async function getMemoriesForTimeline(timelineId) {
     const timelineData = await db.execute(
       `SELECT * FROM memories 
       WHERE timeline_id = ?
-      ORDER BY created_at DESC`,
+      ORDER BY memory_created_at DESC`,
       [timelineId]
     );
 
