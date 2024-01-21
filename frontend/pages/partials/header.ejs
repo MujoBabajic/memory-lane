@@ -1,5 +1,25 @@
 <header>
   <a href="/feed" class="header-logo">Memory Lane</a>
+  <div class="search-container">
+    <div class="search-wrapper">
+      <form
+        action="/profile/search"
+        id="search-form"
+        method="GET"
+        onsubmit="return validateSearchForm()"
+      >
+        <input
+          type="text"
+          name="userName"
+          id="search-input"
+          placeholder="Find users"
+        />
+        <button>
+          <img src="/images/search.png" alt="" />
+        </button>
+      </form>
+    </div>
+  </div>
   <nav>
     <div class="profile-nav-button">
       <% if(user[0].profile_picture) {%>
@@ -16,4 +36,18 @@
       </div>
     </div>
   </nav>
+
+  <script>
+    function validateSearchForm() {
+      let searchInput = document.getElementById("search-input");
+      searchInput.value = searchInput.value.trim();
+
+      if (searchInput.value === "" || /^\s+$/.test(searchInput.value)) {
+        return false;
+      }
+      let searchForm = document.getElementById("search-form");
+
+      return true;
+    }
+  </script>
 </header>

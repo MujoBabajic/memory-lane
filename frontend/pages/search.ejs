@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Lane</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="icon" href="/images/favicon_logo.png" />
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+
+    <main>
+      <section class="search-results-container">
+        <h2>Search Results:</h2>
+        <br />
+        <% if (usersData[0].length === 0) { %>
+        <p>No users found.</p>
+        <% } else { %> <% usersData[0].forEach(user => { %>
+        <a href="/profile/<%=user.user_id%>">
+          <div class="search-results-item">
+            <%if (user.profile_picture) {%>
+            <img
+              src="data:image/jpeg;base64,<%= Buffer.from(user.profile_picture)%>"
+              alt=""
+            />
+
+            <%} else {%>
+            <img src="/images/default_profile_img.jpg" alt="" />
+            <%} %>
+            <p class="search-item-name">
+              <%= user.first_name %> <%= user.last_name %>
+            </p>
+          </div>
+        </a>
+        <% }); %> <% } %>
+      </section>
+    </main>
+    <script src="/js/navDropdown.js"></script>
+    <script src="/js/newTimelineModal.js"></script>
+    <script src="/js/changeAvatarModal.js"></script>
+    <script>
+      window.addEventListener("click", (event) => {
+        if (event.target == document.querySelector("#new-timeline-modal")) {
+          document.querySelector("#new-timeline-modal").style.display = "none";
+        } else if (
+          event.target == document.querySelector("#change-avatar-modal")
+        ) {
+          document.querySelector("#change-avatar-modal").style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

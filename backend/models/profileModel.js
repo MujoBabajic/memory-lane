@@ -14,4 +14,19 @@ async function changeAvatar(picture, userId) {
   }
 }
 
-module.exports = { changeAvatar };
+async function getUsersForSearch(name) {
+  try {
+    const data = await db.execute(
+      `SELECT * FROM users
+      WHERE CONCAT(first_name, ' ', last_name) 
+      LIKE '${name}%'
+      OR CONCAT(first_name, ' ', last_name) LIKE '%${name}%';`
+    );
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports = { changeAvatar, getUsersForSearch };

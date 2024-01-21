@@ -50,4 +50,15 @@ function checkIsOwnProfile(token, userId) {
   return isOwnProfile;
 }
 
-module.exports = { changeAvatar, checkIsOwnProfile };
+async function searchUsers(req, res) {
+  try {
+    const { userName } = req.query;
+    const usersData = await profileModel.getUsersForSearch(userName);
+
+    res.render("search", { usersData });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Internal Server Error");
+  }
+}
+module.exports = { changeAvatar, checkIsOwnProfile, searchUsers };

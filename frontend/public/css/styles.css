@@ -678,3 +678,76 @@ hr {
   text-align: center;
   user-select: none;
 }
+
+.search-container {
+  margin-left: 55%;
+}
+
+#search-input {
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  outline: none;
+}
+
+.search-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.search-wrapper img {
+  width: 15px;
+  height: auto;
+}
+
+.search-wrapper form {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-wrapper form button {
+  margin-right: 7px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  height: 15px;
+}
+
+.search-results-container {
+  width: 100%;
+}
+
+.search-results-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-bottom: 10px;
+  background-color: #dfdfdf;
+  padding: 10px;
+}
+
+.search-results-item:hover {
+  opacity: 0.8;
+}
+
+.search-results-item img {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.search-results-container a {
+  text-decoration: none;
+  color: black;
+}
+
+.search-results-container a:visited {
+  color: black;
+}
