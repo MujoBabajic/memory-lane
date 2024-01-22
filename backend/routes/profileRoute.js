@@ -6,5 +6,6 @@ const profileController = require("../controllers/profileController");
 router.get("/search", profileController.searchUsers);
 router.get("/:userId", timelinesController.getTimelines);
 router.post("/changeavatar", profileController.changeAvatar);
+router.post("/editprofile", profileController.editProfile);
 
 module.exports = router;

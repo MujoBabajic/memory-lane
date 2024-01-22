@@ -38,9 +38,84 @@
       <%= `${userData[0].first_name} ${userData[0].last_name}` %>
     </div>
     <% if (isOwnProfile) { %>
-    <a href="/editprofile">
-      <button id="edit-profile-button">Edit profile</button>
-    </a>
+
+    <button id="edit-profile-button">Edit profile</button>
+
     <% } %>
   </div>
 </section>
+
+<div class="modal" id="change-avatar-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span id="close-change-avatar-modal" class="close">&times;</span>
+      <h2>Change Avatar</h2>
+    </div>
+    <br />
+    <form
+      id="change-avatar-form"
+      action="/profile/changeavatar"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <label for="change-avatar-picture">Upload your picture:</label>
+      <input
+        type="file"
+        accept="image/*"
+        id="change-avatar-picture"
+        name="picture"
+        required
+      />
+      <input hidden type="text" name="timelineId" value="" />
+      <br /><br />
+
+      <button
+        class="change-avatar-modal-button modal-submit-button"
+        id="change-avatar-modal-button"
+      >
+        Add Memory
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="edit-profile-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span id="close-edit-profile-modal" class="close">&times;</span>
+      <h2>Edit Profile</h2>
+    </div>
+    <br />
+    <form id="edit-profile-form" action="/profile/editprofile" method="POST">
+      <label for="edit-first-name">First name:</label>
+      <input type="text" name="firstName" id="edit-first-name" />
+      <br />
+      <label for="edit-last-name">Last name:</label>
+      <input type="text" name="lastName" id="edit-last-name" />
+      <br />
+      <div class="edit-dob-and-gender-container">
+        <div class="dob-container">
+          <label for="edit-dob">Date of birth:</label>
+          <input type="date" name="dob" id="edit-dob" />
+        </div>
+        <div class="gender-container">
+          <label for="edit-gender-select">Gender:</label>
+          <select name="gender" id="edit-gender-select">
+            <option value="" selected>Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+      </div>
+      <br />
+      <label for="edit-password">Password:</label>
+      <input type="password" name="password" />
+      <input hidden type="text" name="email" value="<%= userData[0].email %>" />
+      <br /><br />
+
+      <button class="modal-submit-button" id="edit-profile-modal-button">
+        Save Changes
+      </button>
+    </form>
+  </div>
+</div>

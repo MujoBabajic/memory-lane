@@ -29,4 +29,46 @@ async function getUsersForSearch(name) {
   }
 }
 
-module.exports = { changeAvatar, getUsersForSearch };
+async function editProfile(firstName, lastName, dob, gender, password, userId) {
+  try {
+    const updateFields = [];
+    const updateValues = [];
+
+    if (firstName !== "") {
+      updateFields.push("first_name = ?");
+      updateValues.push(firstName);
+    }
+
+    if (lastName !== "") {
+      updateFields.push("last_name = ?");
+      updateValues.push(lastName);
+    }
+
+    if (dob !== "") {
+      updateFields.push("date_of_birth = ?");
+      updateValues.push(dob);
+    }
+
+    if (gender !== "") {
+      updateFields.push("gender = ?");
+      updateValues.push(gender);
+    }
+
+    if (password !== "") {
+      updateFields.push("password_hash = ?");
+      updateValues.push(password);
+    }
+
+    updateValues.push(userId);
+
+    const query = `UPDATE users SET ${updateFields.join(
+      ", "
+    )} WHERE user_id = ?`;
+
+    await db.execute(query, updateValues);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports = { changeAvatar, getUsersForSearch, editProfile };

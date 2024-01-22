@@ -249,9 +249,9 @@ form a {
   padding: 10px;
   cursor: pointer;
   transition: 0.2s;
-
   border-radius: 5px;
-  background-color: rgb(240, 240, 240);
+  background-color: #dad9d9;
+  border: none;
 }
 
 #edit-profile-button:hover {
@@ -277,6 +277,8 @@ form a {
   border-radius: 5px;
   outline: none;
   transition: 0.2s;
+  border: none;
+  background-color: #dad9d9;
 }
 
 #new-timeline-button:hover,
@@ -750,4 +752,20 @@ hr {
 
 .search-results-container a:visited {
   color: black;
+}
+
+.edit-dob-and-gender-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.dob-container,
+.gender-container {
+  width: 48%;
+}
+
+#edit-dob,
+#edit-gender-select {
+  margin-top: 10px;
 }

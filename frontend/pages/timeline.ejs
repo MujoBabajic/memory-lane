@@ -231,40 +231,6 @@
           </form>
         </div>
       </div>
-
-      <div class="modal" id="change-avatar-modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <span id="close-change-avatar-modal" class="close">&times;</span>
-            <h2>Change Avatar</h2>
-          </div>
-          <br />
-          <form
-            id="change-avatar-form"
-            action="/profile/changeavatar"
-            method="POST"
-            enctype="multipart/form-data"
-          >
-            <label for="change-avatar-picture">Upload your picture:</label>
-            <input
-              type="file"
-              accept="image/*"
-              id="change-avatar-picture"
-              name="picture"
-              required
-            />
-            <input hidden type="text" name="timelineId" value="" />
-            <br /><br />
-
-            <button
-              class="change-avatar-modal-button modal-submit-button"
-              id="change-avatar-modal-button"
-            >
-              Add Memory
-            </button>
-          </form>
-        </div>
-      </div>
     </main>
     <script src="/js/navDropdown.js"></script>
     <script src="/js/removeTimelineModal.js"></script>
@@ -272,6 +238,7 @@
     <script src="/js/editTimelineModal.js"></script>
     <script src="/js/adjustEditTimelineModalValues.js"></script>
     <script src="/js/changeAvatarModal.js"></script>
+    <script src="/js/editProfileModal.js"></script>
     <script>
       const main = document.querySelector("main");
       const memoriesContainer = document.querySelector(".memories-container");
@@ -293,6 +260,14 @@
         ) {
           document.querySelector("#remove-timeline-modal").style.display =
             "none";
+        } else if (
+          event.target == document.querySelector("#change-avatar-modal")
+        ) {
+          document.querySelector("#change-avatar-modal").style.display = "none";
+        } else if (
+          event.target == document.querySelector("#edit-profile-modal")
+        ) {
+          document.querySelector("#edit-profile-modal").style.display = "none";
         }
       });
     </script>

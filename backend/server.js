@@ -49,11 +49,6 @@ app.get("/register-page", (req, res) => {
   else res.render("registration", { errors: "", emailExists: false });
 });
 
-app.get("/editprofile", (req, res) => {
-  if (res.locals.user) res.render("edit_profile");
-  else res.sendStatus(401);
-});
-
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

@@ -1,6 +1,9 @@
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const profileModel = require("../models/profileModel");
+require("dotenv").config();
+const authModel = require("../models/authModel");
+const bcrypt = require("bcrypt");
 
 // Set storage for uploaded files
 const storage = multer.memoryStorage(); // Store files in memory as buffers
@@ -61,4 +64,49 @@ async function searchUsers(req, res) {
     res.status(500).send("Internal Server Error");
   }
 }
-module.exports = { changeAvatar, checkIsOwnProfile, searchUsers };
+
+async function editProfile(req, res) {
+  try {
+    const { firstName, lastName, dob, gender, password, email } = req.body;
+    const userData = await authModel.getUserByEmail(email);
+
+    let hashedPassword;
+
+    if (password) {
+      hashedPassword = await bcrypt.hash(password, 10);
+    }
+
+    await profileModel.editProfile(
+      firstName,
+      lastName,
+      dob,
+      gender,
+      hashedPassword,
+      userData[0].user_id
+    );
+
+    if (hashedPassword) {
+      const accessToken = jwt.sign(
+        { userId: userData[0].user_id, userEmail: email },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "1d",
+        }
+      );
+
+      res.cookie("jwt", accessToken, {
+        httpOnly: true,
+        sameSite: "None",
+        secure: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+
+      res.redirect(`/profile/${userData[0].user_id}`);
+    } else {
+      res.redirect(`/profile/${userData[0].user_id}`);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+module.exports = { changeAvatar, checkIsOwnProfile, searchUsers, editProfile };
