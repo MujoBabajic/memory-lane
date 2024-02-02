@@ -23,6 +23,7 @@ Welcome to Memory Lane, a social media app designed to help you relive and share
      Customize timeline style by changing the background color and font
      
     4. User Interaction
+    
      Explore the Home Page feed to see memories from other people,
      Search for other users to view their timelines and memories
 
